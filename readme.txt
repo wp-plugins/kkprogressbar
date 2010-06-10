@@ -1,6 +1,6 @@
 ﻿=== KK ProgressBar ===
 Contributors: Krzysztof Furtak
-Version: 1.0
+Version: 1.0.1
 Tags: progress bar, bar, progress, countdown, count, down, time
 Requires at least: 2.8
 Tested up to: 2.9.2
@@ -40,6 +40,9 @@ Yes :)
 Coming soon
 
 == Changelog ==
+
+= 1.0.1 =
+* FIX: Some bug in javascript functions
 
 = 1.0 =
 * NEW: Beta release

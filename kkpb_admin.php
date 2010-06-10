@@ -3,7 +3,7 @@
 Plugin Name: KK ProgressBar
 Plugin URI: http://krzysztof-furtak.pl/2010/06/wp-kk-progressbar-plugin/
 Description: Plugin shows/indicates progress that has been made on projects or articles.
-Version: 1.0
+Version: 1.0.1
 Author: Krzysztof Furtak
 Author URI: http://krzysztof-furtak.pl
 */
@@ -79,7 +79,7 @@ register_activation_hook(__FILE__, 'kkpb_install');
 /* koniec instalacja */
 
 function kkpb_addJavaScript() {
-    wp_enqueue_script('kkpb_jquery',WP_PLUGIN_URL . '/kkprogressbar/js/jquery.js');
+    //wp_enqueue_script('kkpb_jquery',WP_PLUGIN_URL . '/kkprogressbar/js/jquery.js');
     wp_enqueue_script('kkpb_admin_js_file', WP_PLUGIN_URL . '/kkprogressbar/js/kkpb.js');
 //    wp_enqueue_script('mojeFunkcje',WP_PLUGIN_URL . '/kkprogressbar/js/kkpb.js');
 }
@@ -114,7 +114,7 @@ if (is_admin ()) {
 
             <div class="postbox" style="-moz-border-radius:4px; background: #fdffe1; border: 1px #ffe0a6 solid; font-size: 11px;">
                 <div style="margin:10px;">
-                    KK Progress Bar - ' . __('Aktualna wersja:', 'lang-kkprogressbar') . ' <strong>1.0</strong>
+                    KK Progress Bar - ' . __('Aktualna wersja:', 'lang-kkprogressbar') . ' <strong>1.0.1</strong>
                 </div>
             </div>
 
