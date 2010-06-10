@@ -1,0 +1,131 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: Krzysztof Furtak <krzysztof.furtak@gmail.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+
+#. Text in function
+#: kkpb_admin.php:1
+msgid "Aktualna wersja:"
+msgstr "Version:"
+
+#. Text in function
+#: kkpb_admin.php:1
+msgid "Aktualny procent zaawansowania:"
+msgstr "Progress percentage:"
+
+#. Text in function
+#: kkpb_admin.php:1
+msgid "Artykuł"
+msgstr "Article"
+
+#. Text in function
+#: kkpb_admin.php:1
+msgid "Autor"
+msgstr "Author"
+
+#. Text in function
+#: kkpb_admin.php:1
+msgid "Dodaj"
+msgstr "Add"
+
+#. Text in function
+#: kkpb_admin.php:1
+msgid "Dodaj nowy pasek postępu"
+msgstr "Add new progress bar"
+
+#. Text in function
+#: kkpb_admin.php:1
+msgid "Edycja paseka postępu"
+msgstr "Edit progress bar"
+
+#. Text in function
+#: kkpb_admin.php:1
+msgid "Edytuj"
+msgstr "Edit"
+
+#. Text in function
+#: kkpb_admin.php:1
+msgid "Krótki opis:"
+msgstr "Short description:"
+
+#. Text in function
+#: kkpb_admin.php:1
+msgid "Lista/Edycja"
+msgstr "List"
+
+#. Text in function
+#: kkpb_admin.php:1
+msgid "Nazwa"
+msgstr "Name"
+
+#. Text in function
+#: kkpb_admin.php:1
+msgid "Nazwa projeku"
+msgstr "Project name"
+
+#. Text in function
+#: kkpb_admin.php:1
+msgid "Opcje"
+msgstr "Options"
+
+#. Text in function
+#: kkpb_admin.php:1
+msgid "Opis:"
+msgstr "Description:"
+
+#. Text in function
+#: kkpb_admin.php:1
+msgid "Postęp"
+msgstr "Progress"
+
+#. Text in function
+#: kkpb_admin.php:1
+msgid "Projekt"
+msgstr "Project"
+
+#. Text in function
+#: kkpb_admin.php:1
+msgid "Status"
+msgstr "Status"
+
+#. Text in function
+#: kkpb_admin.php:1
+msgid "Strona wtyczki"
+msgstr "Plugin status"
+
+#. Text in function
+#: kkpb_admin.php:1
+msgid "Usuń"
+msgstr "Delete"
+
+#. Text in function
+#: kkpb_admin.php:1
+msgid "WYBIERZ"
+msgstr "CHOOSE"
+
+#. Text in function
+#: kkpb_admin.php:1
+msgid "Wybierz artykuł nad którym pracujesz"
+msgstr "Choose an article you work on"
+
+#. Text in function
+#: kkpb_admin.php:1
+msgid "Wybierz typ projektu:"
+msgstr "Choose the type of project:"
+
+#. Text in function
+#: kkpb_admin.php:1
+msgid "Zapisz"
+msgstr "Save"
+
+#. Text in function
+#: kkpb_admin.php:1
+msgid "Zgłoś błąd"
+msgstr "Report bug"
+
