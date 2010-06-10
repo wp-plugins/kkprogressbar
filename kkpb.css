@@ -1,0 +1,29 @@
+.kkpb-clear-div{
+    clear: both;
+    width: 100%;
+}
+
+.kk-naglowek{
+    font-size: 14px;
+    font-weight: bold;
+    margin: 15px 0px;
+}
+
+#kkpb-rama,#kkpb-rama-edit{
+    margin-top: 20px;
+    border: 1px #333 solid;
+    height: 20px;
+}
+
+.kkpb-ok{
+    border: 1px #1e7700 solid;
+    background: #eaffe1;
+    padding: 15px;
+    width: 100%;
+}
+.kkpb-error{
+    border: 1px #9f1000 solid;
+    background: #ffe4e1;
+    padding: 15px;
+    width: 100%;
+}
