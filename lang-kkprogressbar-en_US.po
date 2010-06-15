@@ -42,12 +42,22 @@ msgstr "Add new progress bar"
 #. Text in function
 #: kkpb_admin.php:1
 msgid "Edycja paseka postępu"
-msgstr "Edit progress bar"
+msgstr "Progress bar edit"
 
 #. Text in function
 #: kkpb_admin.php:1
 msgid "Edytuj"
 msgstr "Edit"
+
+#. Text in function
+#: kkpb_admin.php:1
+msgid "Kolor aktywnego paseka postępu:"
+msgstr "Colour of active progress bar:"
+
+#. Text in function
+#: kkpb_admin.php:1
+msgid "Kolor nieaktywnego paseka postępu:"
+msgstr "Colour of inactive progress bar:"
 
 #. Text in function
 #: kkpb_admin.php:1
@@ -81,6 +91,11 @@ msgstr "Description:"
 
 #. Text in function
 #: kkpb_admin.php:1
+msgid "Postaw mi kawę:"
+msgstr "Buy me a coffee:"
+
+#. Text in function
+#: kkpb_admin.php:1
 msgid "Postęp"
 msgstr "Progress"
 
@@ -97,7 +112,17 @@ msgstr "Status"
 #. Text in function
 #: kkpb_admin.php:1
 msgid "Strona wtyczki"
-msgstr "Plugin status"
+msgstr "Plugin site"
+
+#. Text in function
+#: kkpb_admin.php:1
+msgid "Textura na paseku postępu:"
+msgstr "Texture on progress bar:"
+
+#. Text in function
+#: kkpb_admin.php:1
+msgid "Ustawienia:"
+msgstr "Settings:"
 
 #. Text in function
 #: kkpb_admin.php:1
@@ -112,12 +137,17 @@ msgstr "CHOOSE"
 #. Text in function
 #: kkpb_admin.php:1
 msgid "Wybierz artykuł nad którym pracujesz"
-msgstr "Choose an article you work on"
+msgstr "Choose an article you work on:"
 
 #. Text in function
 #: kkpb_admin.php:1
 msgid "Wybierz typ projektu:"
 msgstr "Choose the type of project:"
+
+#. Text in function
+#: kkpb_admin.php:1
+msgid "Wygląd paska postępu:"
+msgstr "Progress bar settings:"
 
 #. Text in function
 #: kkpb_admin.php:1
