@@ -27,3 +27,9 @@
     padding: 15px;
     width: 100%;
 }
+
+.kkpb-label{
+    display: inline-block;
+    font-size: 10px;
+    color: #aaa;
+}
