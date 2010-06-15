@@ -74,9 +74,9 @@ NULL ,  NULL,  '$projekt',  '$opis',  '$procent',  '$data',  '1',  '$typ_projekt
 $wynik = $wpdb->query($sql);
 
 if($wynik) {
-    echo '<div class="kkpb-ok postbox">Progressbar zapisany prawidłowo.</div>';
+    echo '<div class="kkpb-ok postbox">Changes saved successfully.</div>';
 }else {
-    echo '<div class="kkpb-error postbox">Progressbar nie mógł zostać zapisany. Proszę spróbować ponownie.</div>';
+    echo '<div class="kkpb-error postbox">Changes have not been saved. Please try again.</div>';
 }
 
 ?>
