@@ -61,18 +61,18 @@ class kkprogressbar extends WP_Widget {
 
                     if ($rows[2]->value == 1) {
                         $klasa = "background: #" . $rows[1]->value . " url(" . WP_PLUGIN_URL . "/kkprogressbar/images/textura_a.png) repeat-x center center;";
-                        $prace = '';
+                        $prace = __('Prace wstrzymane', 'lang-kkprogressbar') . " - ";
                     } else {
                         $klasa = "background: #" . $rows[1]->value . ";";
-                        $prace = '';
+                        $prace = __('Prace wstrzymane', 'lang-kkprogressbar') . " - ";
                     }
                 }
                 if ($wynik['typ'] == 2) {
-                    $head = "Project: <strong style=\"font-size:12px;\">" . $wynik['nazwa'] . "</strong>";
+                    $head =  __('Projekt', 'lang-kkprogressbar') . ": <strong style=\"font-size:12px;\">" . $wynik['nazwa'] . "</strong>";
                 } else if ($wynik['typ'] == 1) {
                     $table_posts = $wpdb->prefix . "posts";
                     $row = $wpdb->get_row("SELECT post_title FROM $table_posts WHERE ID = '$wynik[id]'", ARRAY_A);
-                    $head = "Article: <strong style=\"font-size:12px;\">" . $row['post_title'] . "</strong>";
+                    $head = __('Artykuł', 'lang-kkprogressbar') . ": <strong style=\"font-size:12px;\">" . $row['post_title'] . "</strong>";
                 }
 
                 echo '
@@ -81,7 +81,7 @@ class kkprogressbar extends WP_Widget {
                         <div style="margin: 5px 0px; border: 1px #ccc solid; height: 10px; -webkit-border-radius: 4px; -khtml-border-radius: 4px; -moz-border-radius: 4px; border-radius: 4px;">
                             <div style="' . $klasa . ' height: 10px; width:' . $wynik['procent'] . '%; -webkit-border-radius: 4px; -khtml-border-radius: 4px; -moz-border-radius: 4px; border-radius: 4px;"></div>
                         </div>
-                        <div style="text-align:right; font-size:10px;">' . $prace . ' <strong style="font-size:12px;">' . $wynik['procent'] . '%</strong> done!</div>
+                        <div style="text-align:right; font-size:10px;">' . $prace . ' <strong style="font-size:12px;">' . $wynik['procent'] . '%</strong> ' . __('zakończono', 'lang-kkprogressbar') . '.</div>
                     </div>
                     ';
             }
@@ -125,18 +125,18 @@ function kkpb_bartag_func($atts) {
 
                 if ($rows[2]->value == 1) {
                     $klasa = "background: #" . $rows[1]->value . " url(" . WP_PLUGIN_URL . "/kkprogressbar/images/textura_a.png) repeat-x center center;";
-                    $prace = '';
+                    $prace = __('Prace wstrzymane', 'lang-kkprogressbar') . " - ";
                 } else {
                     $klasa = "background: #" . $rows[1]->value . ";";
-                    $prace = '';
+                    $prace = __('Prace wstrzymane', 'lang-kkprogressbar') . " - ";
                 }
             }
             if ($wynik['typ'] == 2) {
-                $head = "Project: <strong style=\"font-size:12px;\">" . $wynik['nazwa'] . "</strong>";
+                $head = __('Projekt', 'lang-kkprogressbar') . ": <strong style=\"font-size:12px;\">" . $wynik['nazwa'] . "</strong>";
             } else if ($wynik['typ'] == 1) {
                 $table_posts = $wpdb->prefix . "posts";
                 $row = $wpdb->get_row("SELECT post_title FROM $table_posts WHERE ID = '$wynik[id]'", ARRAY_A);
-                $head = "Article: <strong style=\"font-size:12px;\">" . $row['post_title'] . "</strong>";
+                $head = __('Artykuł', 'lang-kkprogressbar') . ": <strong style=\"font-size:12px;\">" . $row['post_title'] . "</strong>";
             }
 
             return '
@@ -144,7 +144,7 @@ function kkpb_bartag_func($atts) {
                         <div style="margin: 5px 0px; border: 1px #ccc solid; height: 20px; -webkit-border-radius: 4px; -khtml-border-radius: 4px; -moz-border-radius: 4px; border-radius: 4px;">
                             <div style="' . $klasa . ' height: 20px; width:' . $wynik['procent'] . '%; -webkit-border-radius: 4px; -khtml-border-radius: 4px; -moz-border-radius: 4px; border-radius: 4px;"></div>
                         </div>
-                        <div style="text-align:right; font-size:10px;">' . $prace . ' <strong style="font-size:12px;">' . $wynik['procent'] . '%</strong> done!</div>
+                        <div style="text-align:right; font-size:10px;">' . $prace . ' <strong style="font-size:12px;">' . $wynik['procent'] . '%</strong> ' . __('zakończono', 'lang-kkprogressbar') . '.</div>
                     </div>
 
             ';

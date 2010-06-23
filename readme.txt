@@ -1,9 +1,9 @@
 ﻿=== KK ProgressBar ===
 Contributors: Krzysztof Furtak
-Version: 1.1.1
+Version: 1.1.2
 Tags: progress bar, bar, progress, countdown, count, down, time
 Requires at least: 2.8
-Tested up to: 2.9.2
+Tested up to: 3.0
 Stable tag: trunk
 
 == Description ==
@@ -37,9 +37,17 @@ Yes :)
 
 == Screenshots ==
 
-Coming soon
+1. Administration
+2. Add progress bar
+3. Widget
+4. Article
 
 == Changelog ==
+
+= 1.1.2 =
+* CHANGE: Plugin is fully based on Ajax (no need to reload a page ).
+* CHANGE: Modified view of plugin settings.
+* FIX: Plugin bug causing issues under Wordpress 3.0
 
 = 1.1.1 =
 * FIX: Settings save

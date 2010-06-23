@@ -3,13 +3,13 @@
   Plugin Name: KK ProgressBar
   Plugin URI: http://krzysztof-furtak.pl/2010/06/wp-kk-progressbar-plugin/
   Description: Plugin shows/indicates progress that has been made on projects or articles.
-  Version: 1.1.1
+  Version: 1.1.2
   Author: Krzysztof Furtak
   Author URI: http://krzysztof-furtak.pl
  */
-
 add_action('init', 'kkpb_addJavaScript');
 add_action('admin_init', 'kkpb_admin_init');
+add_action('init', 'kkpb_load_translation');
 
 require_once('kkpb_prezentacja.php');
 
@@ -113,7 +113,6 @@ function kkpb_addJavaScript() {
 
 if (is_admin ()) {
     add_action('admin_menu', 'kkpb_menu');
-    add_action('init', 'kkpb_load_translation');
     add_action('admin_print_styles', 'kkpb_admin_styles');
 
     function kkpb_admin_styles() {
@@ -142,7 +141,7 @@ if (is_admin ()) {
 
             <div class="postbox" style="-moz-border-radius:4px; background: #fdffe1; border: 1px #ffe0a6 solid; font-size: 11px;">
                 <div style="margin:10px;">
-                    KK Progress Bar - ' . __('Aktualna wersja:', 'lang-kkprogressbar') . ' <strong>1.1.1</strong>
+                    KK Progress Bar - ' . __('Aktualna wersja:', 'lang-kkprogressbar') . ' <strong>1.1.2</strong>
                 </div>
             </div>
 
@@ -226,7 +225,7 @@ if (is_admin ()) {
                                 </div>
                             </div>
                             <div class="kk-row">
-                                <a href="#" class="button" onclick="kkpbSaveEditProgress(); return false;" /><img src="' . WP_PLUGIN_URL . '/kkprogressbar/images/save.png" alt="+" style="display:inline-block; vertical-align:middle;" /> ' . __('Zapisz', 'lang-kkprogressbar') . '</a><span id="save-loading" style="display: none;"><img src="' . WP_PLUGIN_URL . '/kkcountdown/images/loader.gif" style="vertical-align: middle; margin-left: 10px;" alt="Czekaj..." /></span>
+                                <a href="#" class="button" onclick="kkpbSaveEditProgress(); return false;" /><img src="' . WP_PLUGIN_URL . '/kkprogressbar/images/save.png" alt="+" style="display:inline-block; vertical-align:middle;" /> ' . __('Zapisz', 'lang-kkprogressbar') . '</a><span id="save-loading-edit" style="display: none;"><img src="' . WP_PLUGIN_URL . '/kkcountdown/images/loader.gif" style="vertical-align: middle; margin-left: 10px;" alt="Czekaj..." /></span>
                             </div>
                         </form>
                     </div>
@@ -238,7 +237,7 @@ if (is_admin ()) {
             <div style="float:left; width: 74%;">
             <div style="text-align:right; margin-top:20px;"><a href="#" class="button add-new-h2" onclick="addProgressBarDiv(); return false;"><img src="' . WP_PLUGIN_URL . '/kkprogressbar/images/add.png" alt="+" style="display:inline-block; vertical-align:middle;" /> ' . __('Dodaj', 'lang-kkprogressbar') . '</a></div>';
 
-        echo '<table class="widefat fixed" cellspacing="0" style="margin-top: 20px;">';
+        echo '<table id="kkpb-table" class="widefat fixed" cellspacing="0" style="margin-top: 20px;">';
         echo '<thead><tr class="thead">
             <th style="width: 35px;">ID:</th>
             <th style="width: 150px;">' . __('Nazwa', 'lang-kkprogressbar') . ':</th>
@@ -251,11 +250,11 @@ if (is_admin ()) {
         foreach ($rows as $row) {
 
             if ($row->status == 1) {
-                $status = '<img src="' . WP_PLUGIN_URL . '/kkprogressbar/images/aktywny.png" id="kkpb-status-' . $row->id . '" onclick="zmienStatusKKPB(\'' . WP_PLUGIN_URL . '/kkprogressbar/skryptyphp/ZmienStatus.php\',\'' . $row->id . '\'); return false;" alt="Yes" style="display:inline-block; vertical-align:middle; cursor: pointer;" />';
+                $status = '<img src="' . WP_PLUGIN_URL . '/kkprogressbar/images/aktywny.png" id="kkpb-status-' . $row->id . '" onclick="zmienStatusKKPB(\'' . $row->id . '\'); return false;" alt="Yes" style="display:inline-block; vertical-align:middle; cursor: pointer;" />';
             } else if ($row->status == 2) {
-                $status = '<img src="' . WP_PLUGIN_URL . '/kkprogressbar/images/wstrzymany.png" id="kkpb-status-' . $row->id . '" onclick="zmienStatusKKPB(\'' . WP_PLUGIN_URL . '/kkprogressbar/skryptyphp/ZmienStatus.php\',\'' . $row->id . '\'); return false;" alt="Yes" style="display:inline-block; vertical-align:middle; cursor: pointer;" />';
+                $status = '<img src="' . WP_PLUGIN_URL . '/kkprogressbar/images/wstrzymany.png" id="kkpb-status-' . $row->id . '" onclick="zmienStatusKKPB(\'' . $row->id . '\'); return false;" alt="Yes" style="display:inline-block; vertical-align:middle; cursor: pointer;" />';
             } else {
-                $status = '<img src="' . WP_PLUGIN_URL . '/kkprogressbar/images/nieaktywny.png" id="kkpb-status-' . $row->id . '" onclick="zmienStatusKKPB(\'' . WP_PLUGIN_URL . '/kkprogressbar/skryptyphp/ZmienStatus.php\',\'' . $row->id . '\'); return false;" alt="No" style="display:inline-block; vertical-align:middle; cursor: pointer;" />';
+                $status = '<img src="' . WP_PLUGIN_URL . '/kkprogressbar/images/nieaktywny.png" id="kkpb-status-' . $row->id . '" onclick="zmienStatusKKPB(\'' . $row->id . '\'); return false;" alt="No" style="display:inline-block; vertical-align:middle; cursor: pointer;" />';
             }
 
             if ($row->nazwa == NULL) {
@@ -269,7 +268,7 @@ if (is_admin ()) {
             }
 
             $data = date('Y-m-d H:i:s', $row->data_dodania);
-            echo '<tr class="alternate">
+            echo '<tr class="alternate" id="kkpb-row-' . $row->id . '">
                 <td>' . $row->id . '</td>
                 <td>' . $nazwa . '</td>
                 <td>' . $row->opis . '</td>
@@ -283,24 +282,37 @@ if (is_admin ()) {
         echo '</table></div>';
 
         echo '
-        <div style="float:right; width: 25%; margin-right:5px; margin-top:55px;">
-            <div class="postbox" style="float: left;">
-                <div style="border-bottom:1px #ddd solid; color: #ccc; font-size: 14px; font-weight: bold;">
-                    <div style="padding: 10px 15px;">INFO:</div>
-                </div>
+        <div class="metabox-holder" style="float:right; width: 25%; margin-right:5px;">
+            <div class="postbox gdrgrid frontright">
+                <h3 class="hndle" style="cursor:default;"><span>Info:</span></h3>
                 <div class="inside">
                     <div style="margin: 10px 15px;">
                         <div style="margin: 10px 0px;"><span class="kkc-small-text"><strong>' . __('Autor', 'lang-kkprogressbar') . ':</strong></span> <br /><a href="http://krzysztof-furtak.pl" target="_blank" >Krzysztof Furtak</a> <span class="kkc-small-text">Web Developer</span></div>
-                        <div style="margin: 10px 0px;"><strong>' . __('Zgłoś błąd', 'lang-kkprogressbar') . ':</strong> <a href="http://krzysztof-furtak.pl/2010/06/wp-kk-progressbar-plugin/" target="_blank" >' . __('Strona wtyczki', 'lang-kkprogressbar') . '</a></div>
+                        <div style="margin: 10px 0px;"><span class="kkc-small-text"><strong>' . __('Zgłoś błąd', 'lang-kkprogressbar') . ':</strong></span><br /> <a href="http://krzysztof-furtak.pl/2010/06/wp-kk-progressbar-plugin/" target="_blank" >' . __('Strona wtyczki', 'lang-kkprogressbar') . '</a></div>
+                        <hr />
                         <div style="margin: 10px 0px; font-size: 10px;">
-                            ' . __('Postaw mi kawę:', 'lang-kkprogressbar') . '
-                            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" style="text-align:center; margin-top:10px;">
+                            <h4>' . __('Legenda', 'lang-kkprogressbar') . ':</h4>
+                            <img src="' . WP_PLUGIN_URL . '/kkprogressbar/images/aktywny.png" alt="Yes" style="vertical-align:middle;" /> - ' . __('Aktywny', 'lang-kkprogressbar') . '<br />
+                            <img src="' . WP_PLUGIN_URL . '/kkprogressbar/images/wstrzymany.png" alt="Yes" style="vertical-align:middle;" /> - ' . __('Prace wstrzymane', 'lang-kkprogressbar') . '<br />
+                            <img src="' . WP_PLUGIN_URL . '/kkprogressbar/images/nieaktywny.png" alt="Yes" style="vertical-align:middle;" /> - ' . __('Nieaktywny (nie jest wyświetlany)', 'lang-kkprogressbar') . '<br />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="postbox gdrgrid frontright">
+                <h3 class="hndle" style="cursor:default;"><span>' . __('Dotacja:', 'lang-kkprogressbar') . '</span></h3>
+                <div class="inside">
+                    <div style="margin: 10px 15px;">
+                            
+                            <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
                             <input type="hidden" name="cmd" value="_s-xclick">
-                            <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+                            <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
                             ">
-                            <input type="image" src="https://www.paypal.com/en_US/PL/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                            <input type="image" src="http://krzysztof-furtak.pl/upload/buy_coffee.png" border="0" name="submit" alt="PayPal — Płać wygodnie i bezpiecznie">
                             <img alt="" border="0" src="https://www.paypal.com/pl_PL/i/scr/pixel.gif" width="1" height="1">
                             </form>
+
 
                         </div>
                     </div>
@@ -350,4 +362,7 @@ if (is_admin ()) {
 
 }
 /* koniec admin */
+
+require_once('ajax.php');
+
 ?>

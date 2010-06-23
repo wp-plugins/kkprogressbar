@@ -21,6 +21,12 @@ msgstr "Progress percentage:"
 
 #. Text in function
 #: kkpb_admin.php:1
+msgid "Aktywny"
+msgstr "Active"
+
+#. Text in function
+#: kkpb_prezentacja.php:18
+#: kkpb_admin.php:1
 msgid "Artykuł"
 msgstr "Article"
 
@@ -38,6 +44,11 @@ msgstr "Add"
 #: kkpb_admin.php:1
 msgid "Dodaj nowy pasek postępu"
 msgstr "Add new progress bar"
+
+#. Text in function
+#: kkpb_admin.php:1
+msgid "Dotacja:"
+msgstr "Donation:"
 
 #. Text in function
 #: kkpb_admin.php:1
@@ -66,6 +77,11 @@ msgstr "Short description:"
 
 #. Text in function
 #: kkpb_admin.php:1
+msgid "Legenda"
+msgstr "Legend"
+
+#. Text in function
+#: kkpb_admin.php:1
 msgid "Lista/Edycja"
 msgstr "List"
 
@@ -81,6 +97,11 @@ msgstr "Project name"
 
 #. Text in function
 #: kkpb_admin.php:1
+msgid "Nieaktywny (nie jest wyświetlany)"
+msgstr "Inactive (not displayed)"
+
+#. Text in function
+#: kkpb_admin.php:1
 msgid "Opcje"
 msgstr "Options"
 
@@ -91,15 +112,16 @@ msgstr "Description:"
 
 #. Text in function
 #: kkpb_admin.php:1
-msgid "Postaw mi kawę:"
-msgstr "Buy me a coffee:"
-
-#. Text in function
-#: kkpb_admin.php:1
 msgid "Postęp"
 msgstr "Progress"
 
 #. Text in function
+#: kkpb_admin.php:1
+msgid "Prace wstrzymane"
+msgstr "Works suspended"
+
+#. Text in function
+#: kkpb_prezentacja.php:18
 #: kkpb_admin.php:1
 msgid "Projekt"
 msgstr "Project"
@@ -137,7 +159,7 @@ msgstr "CHOOSE"
 #. Text in function
 #: kkpb_admin.php:1
 msgid "Wybierz artykuł nad którym pracujesz"
-msgstr "Choose an article you work on:"
+msgstr "Choose an article you work on"
 
 #. Text in function
 #: kkpb_admin.php:1
@@ -157,5 +179,15 @@ msgstr "Save"
 #. Text in function
 #: kkpb_admin.php:1
 msgid "Zgłoś błąd"
-msgstr "Report bug"
+msgstr "Report BUG"
+
+#. Text in function
+#: kkpb_prezentacja.php:18
+msgid "zakończono"
+msgstr "done"
+
+#. Text in echo
+#: kkpb_prezentacja.php:17
+msgid "Title:"
+msgstr "Title:"
 

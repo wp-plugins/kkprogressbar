@@ -456,19 +456,20 @@ function kkpbSaveSettingsBar(){
     }else{
         textura = '0';
     }
-    var wiadomosc = "kol_aktywny="+kol_aktywny+"&kol_nieaktywny="+kol_nieaktywny+"&textura="+textura;
+    
+    var wiadomosc = {
+        action : 'bar_settings_kkpb',
+        kol_aktywny : kol_aktywny,
+        kol_nieaktywny : kol_nieaktywny,
+        textura : textura
+    };
 
-    jQuery.ajax({
-        url: "../wp-content/plugins/kkprogressbar/skryptyphp/SaveBarSettings.php",
-        data: wiadomosc,
-        type: "POST",
-        beforeSend: function(){
-            jQuery('#save-loading').show();
-        },
-        success: function(html){
-            jQuery('#save-loading').hide();
-            jQuery('#info').html(html);
-        }
+    jQuery('#save-loading').show();
+    jQuery.post(ajaxurl,wiadomosc,function(html){
+
+        jQuery('#save-loading').hide();
+        jQuery('#info').html(html);
+        setTimeout("jQuery('#info').html(' ');",3000);
     });
 
 }
@@ -518,21 +519,31 @@ function kkpbSaveProgress(){
     var procent = jQuery('#kkpb-procent').val();
 
     if(error == 0){
-        var wiadomosc = "typ_projektu="+typ_projektu+"&projekt="+projekt+"&opis="+opis+"&procent="+procent;
+        var wiadomosc = {
+            action : 'save_bar_kkpb',
+            typ_projektu : typ_projektu,
+            projekt : projekt,
+            opis : opis,
+            procent :procent
+        };
 
-        jQuery.ajax({
-            url: "../wp-content/plugins/kkprogressbar/skryptyphp/SaveBar.php?u=0",
-            data: wiadomosc,
-            type: "POST",
-            beforeSend: function(){
-                jQuery('#save-loading').show();
-            },
-            success: function(html){
-                jQuery('#save-loading').hide();
-                jQuery('#info').html(html);
-                setTimeout('window.location.reload()',2000);
+        jQuery('#save-loading').show();
+        jQuery.post(ajaxurl,wiadomosc,function(html){
+
+            jQuery('#save-loading').hide();
+
+            var dane = html.split('|||');
+
+            if(dane[0] == 1){
+                
+                jQuery('#kkpb-table').append(dane[3]);
+
             }
+
+            jQuery('#info').html(dane[1]);
+            setTimeout("jQuery('#info').html(' ');",3000);
         });
+        
     }
 }
 
@@ -554,21 +565,33 @@ function kkpbSaveEditProgress(){
     var procent = jQuery('#kkpb-procent-edit').val();
 
     if(error == 0){
-        var wiadomosc = "typ_projektu="+typ_projektu+"&projekt="+projekt+"&opis="+opis+"&procent="+procent+"&idprogress="+idprogress;
+        var wiadomosc = {
+            action : 'save_bar_kkpb',
+            typ_projektu : typ_projektu,
+            projekt : projekt,
+            opis : opis,
+            procent : procent,
+            idprogress : idprogress,
+            u : 1
+        };
+        jQuery('#save-loading-edit').show();
+        jQuery.post(ajaxurl,wiadomosc,function(html){
 
-        jQuery.ajax({
-            url: "../wp-content/plugins/kkprogressbar/skryptyphp/SaveBar.php?u=1",
-            data: wiadomosc,
-            type: "POST",
-            beforeSend: function(){
-                jQuery('#save-loading-edit').show();
-            },
-            success: function(html){
-                jQuery('#save-loading-edit').hide();
-                jQuery('#info').html(html);
-                setTimeout('window.location.reload()',2000);
+            jQuery('#save-loading-edit').hide();
+
+            var dane = html.split('|||');
+
+            if(dane[0] == 1){
+                jQuery('#kkpb-row-'+idprogress).remove();
+                jQuery('#kkpb-table').append(dane[3]);
+
             }
+
+            jQuery('#info').html(dane[1]);
+            setTimeout("jQuery('#info').html(' ');",3000);
+
         });
+        
     }
 
 }
@@ -585,22 +608,21 @@ function editKKPB(id,nazwa,opis,procent,typ,status,idpost){
                 jQuery('#kkpb-projekt-b').hide();
             }else if(typ == 1){
 
-                jQuery.ajax({
-                    url: "../wp-content/plugins/kkprogressbar/skryptyphp/AddBar.php?e=1&id="+idpost,
-                    type: "POST",
-                    beforeSend: function(){
-                        jQuery('#add-loading-edit').show();
-                    },
-                    success: function(html){
+                var wiadomosc = {
+                    action : 'add_bar_kkpb',
+                    e : 1,
+                    id : idpost
+                };
+                jQuery('#add-loading-edit').show();
+                jQuery.post(ajaxurl,wiadomosc,function(html){
 
-                        jQuery('#add-loading-edit').hide();
-                        jQuery('#kkpb-projekt-a-edit').hide();
-                        jQuery('#kkpb-projekt-b-edit').show();
-                        jQuery('#kkpb-projekt-b-wew-edit').html(html);
-                        setTimeout('window.location.reload()',2000);
-                    }
+                    jQuery('#add-loading-edit').hide();
+                    jQuery('#kkpb-projekt-a-edit').hide();
+                    jQuery('#kkpb-projekt-b-edit').show();
+                    jQuery('#kkpb-projekt-b-wew-edit').html(html);
+                    setTimeout('window.location.reload()',2000);
                 });
-
+                
             }else if(typ == 2){
                 jQuery('#kkpb-projekt-b-edit').hide();
                 jQuery('#kkpb-projekt-a-edit').show();
@@ -643,51 +665,51 @@ function editKKPB(id,nazwa,opis,procent,typ,status,idpost){
 function delKKPB(id){
 
     if(confirm("Are you sure?")){
-        jQuery.ajax({
-            url: "../wp-content/plugins/kkprogressbar/skryptyphp/DelBar.php",
-            data: "id="+id,
-            type: "POST",
-            beforeSend: function(){
-            //jQuery('#add-loading-edit').show();
-            },
-            success: function(html){
+        
+        jQuery.post(ajaxurl,{
+            action : 'del_bar_kkpb',
+            id : id
+        },function(html){
 
-                jQuery('#info').html(html);
-                setTimeout('window.location.reload()',2000);
+             var dane = html.split('|||');
+
+            if(dane[0] == 1){
+
+                jQuery('#kkpb-row-'+id).remove();
+
             }
+
+            jQuery('#info').html(dane[1]);
+
         });
     }
 }
 
-function zmienStatusKKPB(url,id){
+function zmienStatusKKPB(id){
 
-    var wiadomosc = "id=" + id;
+    var wiadomosc = {
+        action : 'zmiana_statusu_kkpb',
+        id : id
+    };
+    jQuery('#loader-status-'+id).show();
+    jQuery.post(ajaxurl,wiadomosc,function(html){
+        
+        jQuery('#loader-status-'+id).hide();
+        if(html == 00){
+            jQuery('#kkpb-status-'+id).attr({
+                'src':'../wp-content/plugins/kkprogressbar/images/nieaktywny.png'
+            });
+        }else if(html == 10){
+            jQuery('#kkpb-status-'+id).attr({
+                'src':'../wp-content/plugins/kkprogressbar/images/aktywny.png'
+            });
+        }else if(html == 20){
+            jQuery('#kkpb-status-'+id).attr({
+                'src':'../wp-content/plugins/kkprogressbar/images/wstrzymany.png'
+            });
+        }else{
+            jQuery('#info').html('<div style="background: #ffd9d9; margin:20px; padding: 10px; border-top: 1px #bb0000 solid; border-bottom: 1px #bb0000 solid;">BŁĄD: Status nie został zmieniony.</div>');
 
-    jQuery.ajax({
-        url: url,
-        data: wiadomosc,
-        type: "POST",
-        beforeSend: function(){
-            jQuery('#loader-status-'+id).show();
-        },
-        success: function(html){
-            jQuery('#loader-status-'+id).hide();
-            if(html == 0){
-                jQuery('#kkpb-status-'+id).attr({
-                    'src':'../wp-content/plugins/kkprogressbar/images/nieaktywny.png'
-                });
-            }else if(html == 1){
-                jQuery('#kkpb-status-'+id).attr({
-                    'src':'../wp-content/plugins/kkprogressbar/images/aktywny.png'
-                });
-            }else if(html == 2){
-                jQuery('#kkpb-status-'+id).attr({
-                    'src':'../wp-content/plugins/kkprogressbar/images/wstrzymany.png'
-                });
-            }else{
-                jQuery('#info').html('<div style="background: #ffd9d9; margin:20px; padding: 10px; border-top: 1px #bb0000 solid; border-bottom: 1px #bb0000 solid;">BŁĄD: Status nie został zmieniony.</div>');
-                    
-            }
         }
     });
 
@@ -726,22 +748,20 @@ jQuery(document).ready(function(){
             jQuery('#kkpb-projekt-b').hide();
         }else if(typ == 1){
 
-            jQuery.ajax({
-                url: "../wp-content/plugins/kkprogressbar/skryptyphp/AddBar.php?e=0",
-                type: "POST",
-                beforeSend: function(){
-                    jQuery('#add-loading').show();
-                },
-                success: function(html){
+            var wiadomosc = {
+                action : 'add_bar_kkpb',
+                e : 0
+            };
+            jQuery('#add-loading').show();
+            jQuery.post(ajaxurl,wiadomosc,function(html){
 
-                    jQuery('#add-loading').hide();
-                    jQuery('#kkpb-projekt-a').hide();
-                    jQuery('#kkpb-projekt-b').show();
-                    jQuery('#kkpb-projekt-b-wew').html(html);
-                    
-                }
+                jQuery('#add-loading').hide();
+                jQuery('#kkpb-projekt-a').hide();
+                jQuery('#kkpb-projekt-b').show();
+                jQuery('#kkpb-projekt-b-wew').html(html);
             });
 
+            
         }else if(typ == 2){
             jQuery('#kkpb-projekt-b').hide();
             jQuery('#kkpb-projekt-a').show();
@@ -759,22 +779,19 @@ jQuery(document).ready(function(){
             jQuery('#kkpb-projekt-b-edit').hide();
         }else if(typ == 1){
 
-            jQuery.ajax({
-                url: "../wp-content/plugins/kkprogressbar/skryptyphp/AddBar.php?e=1",
-                type: "POST",
-                beforeSend: function(){
-                    jQuery('#add-loading-edit').show();
-                },
-                success: function(html){
+            var wiadomosc = {
+                action : 'add_bar_kkpb',
+                e : 1
+            };
+            jQuery('#add-loading-edit').show();
+            jQuery.post(ajaxurl,wiadomosc,function(html){
 
-                    jQuery('#add-loading-edit').hide();
-                    jQuery('#kkpb-projekt-a-edit').hide();
-                    jQuery('#kkpb-projekt-b-edit').show();
-                    jQuery('#kkpb-projekt-b-wew-edit').html(html);
-
-                }
+                jQuery('#add-loading-edit').hide();
+                jQuery('#kkpb-projekt-a-edit').hide();
+                jQuery('#kkpb-projekt-b-edit').show();
+                jQuery('#kkpb-projekt-b-wew-edit').html(html);
             });
-
+            
         }else if(typ == 2){
             jQuery('#kkpb-projekt-b-edit').hide();
             jQuery('#kkpb-projekt-a-edit').show();
