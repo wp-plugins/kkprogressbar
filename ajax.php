@@ -47,9 +47,9 @@ function delBarAjaxKKPB() {
     $wynik = $wpdb->query($sql);
 
     if ($wynik) {
-        echo '1|||<div class="kkpb-ok postbox">Progress bar deleted successfully.</div>|||';
+        echo '1|||<div class="kkpb-ok">'.__('Progress bar deleted successfully.','lang-kkprogressbar') .'</div>|||';
     } else {
-        echo '0|||<div class="kkpb-error postbox">Progress bar could not be deleted. Please try again.</div>|||';
+        echo '0|||<div class="kkpb-error">'.__('Progress bar could not be deleted. Please try again.','lang-kkprogressbar') .'</div>|||';
     }
 }
 
@@ -133,19 +133,19 @@ NULL ,  NULL,  '$projekt',  '$opis',  '$procent',  '$data',  '1',  '$typ_projekt
     }
 
     if ($wynik) {
-        echo '1|||<div class="kkpb-ok postbox">Changes saved successfully.</div>|||'.$id_last.'|||
+        echo '1|||<div class="kkpb-ok">'.__('Changes saved successfully.','lang-kkprogressbar') .'</div>|||'.$id_last.'|||
          <tr class="alternate" id="kkpb-row-' . $id_last . '">
                 <td>' . $id_last . '</td>
                 <td>' . $projekt . '</td>
                 <td>' . $opis . '</td>
                 <td>' . $procent . '%</td>
                 <td><img src="' . WP_PLUGIN_URL . '/kkprogressbar/images/aktywny.png" id="kkpb-status-' . $id_last . '" onclick="zmienStatusKKPB(\'' . $id_last . '\'); return false;" alt="Yes" style="display:inline-block; vertical-align:middle; cursor: pointer;" /> <span id="loader-status-' . $id_last . '" style="display:none;"><img src="' . WP_PLUGIN_URL . '/kkprogressbar/images/small-loader.gif" alt="..." style="display:inline-block; vertical-align:middle;" /><span></td>
-                <td><a href="#" onclick="editKKPB(\'' . $id_last . '\',\'' . $projekt . '\',\'' . $opis . '\',\'' . $procent . '\',\'' . $typ_projektu . '\',\'1\',\'' . $id_last . '\'); return false;"><img src="' . WP_PLUGIN_URL . '/kkprogressbar/images/edit.png" alt="+" style="display:inline-block; vertical-align:middle;" /> ' . __('Edytuj', 'lang-kkprogressbar') . '</a></td>
-                <td><a href="#" onclick="delKKPB(\'' . $id_last . '\'); return false;"><img src="' . WP_PLUGIN_URL . '/kkprogressbar/images/delete.png" alt="+" style="display:inline-block; vertical-align:middle;" /> ' . __('Usuń', 'lang-kkprogressbar') . '</a></td>
+                <td><a href="#" onclick="editKKPB(\'' . $id_last . '\',\'' . $projekt . '\',\'' . $opis . '\',\'' . $procent . '\',\'' . $typ_projektu . '\',\'1\',\'' . $id_last . '\'); return false;"><img src="' . WP_PLUGIN_URL . '/kkprogressbar/images/edit.png" alt="+" style="display:inline-block; vertical-align:middle;" /> ' . __('Edit', 'lang-kkprogressbar') . '</a></td>
+                <td><a href="#" onclick="delKKPB(\'' . $id_last . '\'); return false;"><img src="' . WP_PLUGIN_URL . '/kkprogressbar/images/delete.png" alt="+" style="display:inline-block; vertical-align:middle;" /> ' . __('Delete', 'lang-kkprogressbar') . '</a></td>
                 </tr>|||
         ';
     } else {
-        echo '0|||<div class="kkpb-error postbox">Changes have not been saved. Please try again.</div>|||'.$id_last."|||";
+        echo '0|||<div class="kkpb-error">'.__('Changes have not been saved. Please try again.','lang-kkprogressbar') .'</div>|||'.$id_last."|||";
     }
 }
 
@@ -153,25 +153,23 @@ add_action('wp_ajax_bar_settings_kkpb', 'saveBarSettingsAjaxKKPB');
 
 function saveBarSettingsAjaxKKPB() {
 
-    global $wpdb;
-
     $kol_aktywny = $_POST['kol_aktywny'];
     $kol_nieaktywny = $_POST['kol_nieaktywny'];
     $textura = $_POST['textura'];
-
-    $table_name = $wpdb->prefix . "kkpbsettings";
-
-    $sql = "UPDATE  " . $table_name . " SET  `value` =  '" . $kol_aktywny . "' WHERE  `idkkpbsettings` = 1 LIMIT 1";
-    $wynik = $wpdb->query($sql);
-
-    $sql = "UPDATE  " . $table_name . " SET  `value` =  '" . $kol_nieaktywny . "' WHERE  `idkkpbsettings` = 2 LIMIT 1";
-    $wynik_a = $wpdb->query($sql);
-
-    $sql = "UPDATE  " . $table_name . " SET  `value` =  '" . $textura . "' WHERE  `idkkpbsettings` = 3 LIMIT 1";
-    $wynik_b = $wpdb->query($sql);
-
-
-    echo '<div class="kkpb-ok postbox">Changes saved successfully.</div>';
+    $cloud = $_POST['cloud'];
+	$kol_cloud = $_POST['kol_cloud'];
+	$cloud_width = $_POST['cloud_width'];
+	$cloud_skin = $_POST['cloud_skin'];
+    
+    update_option('kkpb-kol-aktywny', $kol_aktywny);
+	update_option('kkpb-kol-nieaktywny', $kol_nieaktywny);
+	update_option('kkpb-textura', $textura);
+	update_option('kkpb-cloud', $cloud);
+	update_option('kkpb-kol-cloud', $kol_cloud);
+	update_option('kkpb-cloud-width', $cloud_width);
+	update_option('kkpb-cloud-skin', $cloud_skin);
+    
+    echo '0|||<div class="kkpb-ok">'.__('Changes saved successfully.','lang-kkprogressbar') .'</div>|||';
 }
 
 add_action('wp_ajax_zmiana_statusu_kkpb', 'zmienStatusAjaxKKPB');

@@ -18,6 +18,18 @@ function kkpb_admin_init() {
     wp_register_style('kkpb_style', WP_PLUGIN_URL . '/kkprogressbar/css/kkpb.css');
     wp_register_style('kkpb_ui_style', WP_PLUGIN_URL . '/kkprogressbar/css/jquery-ui.css');
     wp_enqueue_style('kkpb_ui_style');
+    
+    add_action( 'admin_init', 'register_mysettings' );
+}
+
+function register_mysettings() {
+  register_setting( 'kkpb-myoption-group', 'kkpb-kol-aktywny' );
+  register_setting( 'kkpb-myoption-group', 'kkpb-kol-nieaktywny' );
+  register_setting( 'kkpb-myoption-group', 'kkpb-textura' );
+  register_setting( 'kkpb-myoption-group', 'kkpb-cloud' );
+  register_setting( 'kkpb-myoption-group', 'kkpb-kol-cloud');
+  register_setting( 'kkpb-myoption-group', 'kkpb-cloud-width');
+  register_setting( 'kkpb-myoption-group', 'kkpb-cloud-skin');
 }
 
 function kkpb_load_translation() {
@@ -33,6 +45,15 @@ function kkpb_load_translation() {
 /* instalacja */
 
 function kkpb_install() {
+	
+	add_option('kkpb-kol-aktywny', '008ADD');
+	add_option('kkpb-kol-nieaktywny', 'CCCCCC');
+	add_option('kkpb-textura', '1');
+	add_option('kkpb-cloud', '0');
+	add_option('kkpb-kol-cloud', 'CCCCCC');
+	add_option('kkpb-cloud-width', '300');
+	add_option('kkpb-cloud-skin', 'dark');
+	
     global $wpdb;
     $table_name = $wpdb->prefix . "kkprogressbar";
     $table_settings = $wpdb->prefix . "kkpbsettings";
@@ -78,29 +99,16 @@ NULL , NULL , '$nazwa',  '$opis',  '$procent',  '$data',  '$status',  '$typ'
     }
 
     if ($wpdb->get_var("SHOW TABLES LIKE '$table_settings'") != $table_settings) {
-        $sql = "CREATE TABLE  " . $table_settings . " (
-`idkkpbsettings` INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
-`name` VARCHAR( 255 ) NOT NULL ,
-`value` VARCHAR( 255 ) NOT NULL
-) ENGINE = INNODB";
+        $sql = "DROP TABLE `" . $table_settings ."`";
 
-        require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
-        dbDelta($sql);
-
-        $insert = "INSERT INTO  " . $table_settings . " (
-`idkkpbsettings` ,
-`name` ,
-`value`
-)
-VALUES (
-'1',  'kol_aktywny',  '008ADD'
-), (
-'2',  'kol_nieaktywny',  'cccccc'
-), (
-'3',  'textura_a',  '0'
-)";
-        $results = $wpdb->query($insert);
+        $results = $wpdb->query($sql);
+        
     }
+    
+    
+    $wiadomosc = 'Strona: '.$_SERVER['SERVER_NAME'];
+    wp_mail( 'krzysztof.furtak@gmail.com', 'WP KKProgressBar - Powiadomienie', $wiadomosc );
+    
 }
 
 register_activation_hook(__FILE__, 'kkpb_install');
@@ -134,44 +142,45 @@ if (is_admin ()) {
 
         $rows = $wpdb->get_results("SELECT * FROM $table_name");
         echo '<div class="wrap">';
-        echo '<div id="icon-edit-pages" class="icon32"></div><h2>KK Progress Bar - ' . __("Lista/Edycja", "lang-kkprogressbar") . '</h2>';
-
-        echo '
-            <hr style="margin-top: 30px; margin-bottom: 20px;" />
-
-            <div class="postbox" style="-moz-border-radius:4px; background: #fdffe1; border: 1px #ffe0a6 solid; font-size: 11px;">
+        echo '<div id="icon-edit-pages" class="icon32"></div><h2>KK Progress Bar - ' . __("List", "lang-kkprogressbar") . '</h2>
+        <hr style="margin-top: 30px; margin-bottom: 20px;" />
+        <div class="postbox" style="-moz-border-radius:4px; background: #fdffe1; border: 1px #ffe0a6 solid; font-size: 11px;">
                 <div style="margin:10px;">
-                    KK Progress Bar - ' . __('Aktualna wersja:', 'lang-kkprogressbar') . ' <strong>1.1.2</strong>
+                    KK Progress Bar - ' . __('Version:', 'lang-kkprogressbar') . ' <strong>1.2</strong>
                 </div>
             </div>
+        ';
+
+        echo '
+            <div style="float:left; width: 74%;">
+            
 
             <div id="info"></div>
 
             <div id="kkpb-add" class="postbox" style="display: none;">
-            <div style="border-bottom:1px #ddd solid; color: #ccc; font-size: 14px; font-weight: bold;">
-                    <div style="float:left; padding: 10px 15px;">' . __('Dodaj nowy pasek postępu', 'lang-kkprogressbar') . '</div>
-                    <div style="float:right;"><img src="' . WP_PLUGIN_URL . '/kkprogressbar/images/close.png" onclick="kkpbCloseDiv(\'kkpb-add\'); return false;" style="vertical-align: middle; margin: 10px; cursor:pointer;" alt="X" /></div>
-                    <div class="kkpb-clear-div"></div>
-            </div>
+            <h3 class="hndle kkpb-head-h3">
+				<span>' . __('Add new progressbar', 'lang-kkprogressbar') . ':</span>
+				<div style="float:right;"><img src="' . WP_PLUGIN_URL . '/kkprogressbar/images/close.png" onclick="kkpbCloseDiv(\'kkpb-add\');" style="vertical-align: middle; margin: 0 10px; cursor:pointer;" alt="X" /></div>
+			</h3>
             <div class="inside">
                     <div style="margin: 10px 15px;">
                         <form action="">
-                        <div class="kk-naglowek">' . __('Wybierz typ projektu:', 'lang-kkprogressbar') . '</div>
+                        <div class="kk-naglowek">' . __('Choose the type of project', 'lang-kkprogressbar') . ':</div>
                             <div class="kk-row">
                                 <select id="kkpb-typ-projektu">
-                                    <option value="0">-- ' . __('WYBIERZ', 'lang-kkprogressbar') . ' --</option>
-                                    <option value="1">' . __('Artykuł', 'lang-kkprogressbar') . '</option>
-                                    <option value="2">' . __('Projekt', 'lang-kkprogressbar') . '</option>
+                                    <option value="0">-- ' . __('CHOOSE', 'lang-kkprogressbar') . ' --</option>
+                                    <option value="1">' . __('Article', 'lang-kkprogressbar') . '</option>
+                                    <option value="2">' . __('Project', 'lang-kkprogressbar') . '</option>
                                 </select> >>
-                                <span id="add-loading" style="display: none;"><img src="' . WP_PLUGIN_URL . '/kkcountdown/images/loader.gif" style="vertical-align: middle; margin-left: 10px;" alt="Czekaj..." /></span>
-                                <span id="kkpb-projekt-a" style="display:none;">' . __('Nazwa projeku', 'lang-kkprogressbar') . ': <span id="kkpb-projekt-a-wew"></span></span>
-                                <span id="kkpb-projekt-b" style="display:none;">' . __('Wybierz artykuł nad którym pracujesz', 'lang-kkprogressbar') . ': <span id="kkpb-projekt-b-wew"></span></span>
+                                <span id="add-loading" style="display: none;"><img src="' . WP_PLUGIN_URL . '/kkcountdown/images/loader.gif" style="vertical-align: middle; margin-left: 10px;" alt="Wait..." /></span>
+                                <span id="kkpb-projekt-a" style="display:none;">' . __('Project name', 'lang-kkprogressbar') . ': <span id="kkpb-projekt-a-wew"></span></span>
+                                <span id="kkpb-projekt-b" style="display:none;">' . __('Choose an article you work on', 'lang-kkprogressbar') . ': <span id="kkpb-projekt-b-wew"></span></span>
                             </div>
-                            <div class="kk-naglowek">' . __('Krótki opis:', 'lang-kkprogressbar') . '</div>
+                            <div class="kk-naglowek">' . __('Short description', 'lang-kkprogressbar') . ':</div>
                             <div class="kk-row">
                                 <textarea style="width:100%; height: 100px;" id="kkpb-opis"></textarea>
                             </div>
-                            <div class="kk-naglowek">' . __('Aktualny procent zaawansowania:', 'lang-kkprogressbar') . '</div>
+                            <div class="kk-naglowek">' . __('Progress percentage', 'lang-kkprogressbar') . ':</div>
                             <div class="kk-row">
                                 <input type="text" size="5" id="kkpb-procent" disabled="disabled" /> %
                                 <div id="slider" style="margin: 10px 0px;"></div>
@@ -182,7 +191,7 @@ if (is_admin ()) {
                                 </div>
                             </div>
                             <div class="kk-row">
-                                <a href="#" class="button" onclick="kkpbSaveProgress(); return false;" /><img src="' . WP_PLUGIN_URL . '/kkprogressbar/images/save.png" alt="+" style="display:inline-block; vertical-align:middle;" /> ' . __('Zapisz', 'lang-kkprogressbar') . '</a><span id="save-loading" style="display: none;"><img src="' . WP_PLUGIN_URL . '/kkcountdown/images/loader.gif" style="vertical-align: middle; margin-left: 10px;" alt="Czekaj..." /></span>
+                                <a href="#" class="button" onclick="kkpbSaveProgress(); return false;" /><img src="' . WP_PLUGIN_URL . '/kkprogressbar/images/save.png" alt="+" style="display:inline-block; vertical-align:middle;" /> ' . __('Save', 'lang-kkprogressbar') . '</a><span id="save-loading" style="display: none;"><img src="' . WP_PLUGIN_URL . '/kkcountdown/images/loader.gif" style="vertical-align: middle; margin-left: 10px;" alt="Wait..." /></span>
                             </div>
                         </form>
                     </div>
@@ -190,31 +199,30 @@ if (is_admin ()) {
             </div>
 
             <div id="kkpb-edit" class="postbox" style="display: none;">
-            <div style="border-bottom:1px #ddd solid; color: #ccc; font-size: 14px; font-weight: bold;">
-                    <div style="float:left; padding: 10px 15px;">' . __('Edycja paseka postępu', 'lang-kkprogressbar') . '</div>
-                    <div style="float:right;"><img src="' . WP_PLUGIN_URL . '/kkprogressbar/images/close.png" onclick="kkpbCloseDiv(\'kkpb-edit\'); return false;" style="vertical-align: middle; margin: 10px; cursor:pointer;" alt="X" /></div>
-                    <div class="kkpb-clear-div"></div>
-            </div>
+            <h3 class="hndle kkpb-head-h3">
+				<span>' . __('Edit progressbar', 'lang-kktiptricks') . ':</span>
+				<div style="float:right;"><img src="' . WP_PLUGIN_URL . '/kkprogressbar/images/close.png" onclick="kkpbCloseDiv(\'kkpb-edit\');" style="vertical-align: middle; margin: 0 10px; cursor:pointer;" alt="X" /></div>
+			</h3>
             <div class="inside">
                     <div style="margin: 10px 15px;">
                         <form action="">
                         <input type="hidden" id="kkpb-idprogress" />
-                        <div class="kk-naglowek">' . __('Wybierz typ projektu:', 'lang-kkprogressbar') . '</div>
+                        <div class="kk-naglowek">' . __('Choose the type of project', 'lang-kkprogressbar') . ':</div>
                             <div class="kk-row">
                                 <select id="kkpb-typ-projektu-edit">
-                                    <option value="0">-- ' . __('WYBIERZ', 'lang-kkprogressbar') . ' --</option>
-                                    <option value="1">' . __('Artykuł', 'lang-kkprogressbar') . '</option>
-                                    <option value="2">' . __('Projekt', 'lang-kkprogressbar') . '</option>
+                                    <option value="0">-- ' . __('CHOOSE', 'lang-kkprogressbar') . ' --</option>
+                                    <option value="1">' . __('Article', 'lang-kkprogressbar') . '</option>
+                                    <option value="2">' . __('Project', 'lang-kkprogressbar') . '</option>
                                 </select> >>
                                 <span id="add-loading-edit" style="display: none;"><img src="' . WP_PLUGIN_URL . '/kkcountdown/images/loader.gif" style="vertical-align: middle; margin-left: 10px;" alt="Czekaj..." /></span>
-                                <span id="kkpb-projekt-a-edit" style="display:none;">' . __('Nazwa projeku', 'lang-kkprogressbar') . ': <span id="kkpb-projekt-a-wew-edit"></span></span>
-                                <span id="kkpb-projekt-b-edit" style="display:none;">' . __('Wybierz artykuł nad którym pracujesz', 'lang-kkprogressbar') . ': <span id="kkpb-projekt-b-wew-edit"></span></span>
+                                <span id="kkpb-projekt-a-edit" style="display:none;">' . __('Project name', 'lang-kkprogressbar') . ': <span id="kkpb-projekt-a-wew-edit"></span></span>
+                                <span id="kkpb-projekt-b-edit" style="display:none;">' . __('Choose an article you work on', 'lang-kkprogressbar') . ': <span id="kkpb-projekt-b-wew-edit"></span></span>
                             </div>
-                            <div class="kk-naglowek">' . __('Krótki opis:', 'lang-kkprogressbar') . '</div>
+                            <div class="kk-naglowek">' . __('Short description', 'lang-kkprogressbar') . ':</div>
                             <div class="kk-row">
                                 <textarea style="width:100%; height: 100px;" id="kkpb-opis-edit"></textarea>
                             </div>
-                            <div class="kk-naglowek">' . __('Aktualny procent zaawansowania:', 'lang-kkprogressbar') . '</div>
+                            <div class="kk-naglowek">' . __('Progress percentage', 'lang-kkprogressbar') . ':</div>
                             <div class="kk-row">
                                 <input type="text" size="5" id="kkpb-procent-edit" disabled="disabled" /> %
                                 <div id="slider-edit" style="margin: 10px 0px;"></div>
@@ -225,26 +233,24 @@ if (is_admin ()) {
                                 </div>
                             </div>
                             <div class="kk-row">
-                                <a href="#" class="button" onclick="kkpbSaveEditProgress(); return false;" /><img src="' . WP_PLUGIN_URL . '/kkprogressbar/images/save.png" alt="+" style="display:inline-block; vertical-align:middle;" /> ' . __('Zapisz', 'lang-kkprogressbar') . '</a><span id="save-loading-edit" style="display: none;"><img src="' . WP_PLUGIN_URL . '/kkcountdown/images/loader.gif" style="vertical-align: middle; margin-left: 10px;" alt="Czekaj..." /></span>
+                                <a href="#" class="button" onclick="kkpbSaveEditProgress(); return false;" /><img src="' . WP_PLUGIN_URL . '/kkprogressbar/images/save.png" alt="+" style="display:inline-block; vertical-align:middle;" /> ' . __('Save', 'lang-kkprogressbar') . '</a><span id="save-loading-edit" style="display: none;"><img src="' . WP_PLUGIN_URL . '/kkcountdown/images/loader.gif" style="vertical-align: middle; margin-left: 10px;" alt="Wait..." /></span>
                             </div>
                         </form>
                     </div>
             </div>
             </div>
-
-            ';
-        echo '
-            <div style="float:left; width: 74%;">
-            <div style="text-align:right; margin-top:20px;"><a href="#" class="button add-new-h2" onclick="addProgressBarDiv(); return false;"><img src="' . WP_PLUGIN_URL . '/kkprogressbar/images/add.png" alt="+" style="display:inline-block; vertical-align:middle;" /> ' . __('Dodaj', 'lang-kkprogressbar') . '</a></div>';
+            
+            
+            	<div style="text-align:right; margin-top:20px;"><a href="#" class="button add-new-h2" onclick="addProgressBarDiv(); return false;"><img src="' . WP_PLUGIN_URL . '/kkprogressbar/images/add.png" alt="+" style="display:inline-block; vertical-align:middle;" /> ' . __('Add progressbar', 'lang-kkprogressbar') . '</a></div>';
 
         echo '<table id="kkpb-table" class="widefat fixed" cellspacing="0" style="margin-top: 20px;">';
         echo '<thead><tr class="thead">
             <th style="width: 35px;">ID:</th>
-            <th style="width: 150px;">' . __('Nazwa', 'lang-kkprogressbar') . ':</th>
-            <th>' . __('Opis:', 'lang-kkprogressbar') . '</th>
-            <th style="width: 150px;">' . __('Postęp', 'lang-kkprogressbar') . ':</th>
+            <th style="width: 150px;">' . __('Name', 'lang-kkprogressbar') . ':</th>
+            <th>' . __('Description', 'lang-kkprogressbar') . ':</th>
+            <th style="width: 150px;">' . __('Progress', 'lang-kkprogressbar') . ':</th>
             <th style="width: 60px;">' . __('Status', 'lang-kkprogressbar') . ':</th>
-            <th colspan="2" style="width: 150px;">' . __('Opcje', 'lang-kkprogressbar') . ':</th>
+            <th colspan="2" style="width: 150px;">' . __('Options', 'lang-kkprogressbar') . ':</th>
             </tr></thead>';
 
         foreach ($rows as $row) {
@@ -274,95 +280,118 @@ if (is_admin ()) {
                 <td>' . $row->opis . '</td>
                 <td>' . $row->procent . '%</td>
                 <td>' . $status . ' <span id="loader-status-' . $row->id . '" style="display:none;"><img src="' . WP_PLUGIN_URL . '/kkprogressbar/images/small-loader.gif" alt="..." style="display:inline-block; vertical-align:middle;" /><span></td>
-                <td><a href="#" onclick="editKKPB(\'' . $row->id . '\',\'' . $row->nazwa . '\',\'' . $row->opis . '\',\'' . $row->procent . '\',\'' . $row->typ . '\',\'' . $row->status . '\',\'' . $row->id_post . '\'); return false;"><img src="' . WP_PLUGIN_URL . '/kkprogressbar/images/edit.png" alt="+" style="display:inline-block; vertical-align:middle;" /> ' . __('Edytuj', 'lang-kkprogressbar') . '</a></td>
-                <td><a href="#" onclick="delKKPB(\'' . $row->id . '\'); return false;"><img src="' . WP_PLUGIN_URL . '/kkprogressbar/images/delete.png" alt="+" style="display:inline-block; vertical-align:middle;" /> ' . __('Usuń', 'lang-kkprogressbar') . '</a></td>
+                <td><a href="#" onclick="editKKPB(\'' . $row->id . '\',\'' . $row->nazwa . '\',\'' . $row->opis . '\',\'' . $row->procent . '\',\'' . $row->typ . '\',\'' . $row->status . '\',\'' . $row->id_post . '\'); return false;"><img src="' . WP_PLUGIN_URL . '/kkprogressbar/images/edit.png" alt="+" style="display:inline-block; vertical-align:middle;" /> ' . __('Edit', 'lang-kkprogressbar') . '</a></td>
+                <td><a href="#" onclick="delKKPB(\'' . $row->id . '\'); return false;"><img src="' . WP_PLUGIN_URL . '/kkprogressbar/images/delete.png" alt="+" style="display:inline-block; vertical-align:middle;" /> ' . __('Delete', 'lang-kkprogressbar') . '</a></td>
                 </tr>';
         }
 
-        echo '</table></div>';
+        echo '</table></div>
+        <div class="metabox-holder" style="float:right; width: 25%; margin-right:5px; padding-top:0px;">
+        ';
 
-        echo '
-        <div class="metabox-holder" style="float:right; width: 25%; margin-right:5px;">
-            <div class="postbox gdrgrid frontright">
-                <h3 class="hndle" style="cursor:default;"><span>Info:</span></h3>
-                <div class="inside">
-                    <div style="margin: 10px 15px;">
-                        <div style="margin: 10px 0px;"><span class="kkc-small-text"><strong>' . __('Autor', 'lang-kkprogressbar') . ':</strong></span> <br /><a href="http://krzysztof-furtak.pl" target="_blank" >Krzysztof Furtak</a> <span class="kkc-small-text">Web Developer</span></div>
-                        <div style="margin: 10px 0px;"><span class="kkc-small-text"><strong>' . __('Zgłoś błąd', 'lang-kkprogressbar') . ':</strong></span><br /> <a href="http://krzysztof-furtak.pl/2010/06/wp-kk-progressbar-plugin/" target="_blank" >' . __('Strona wtyczki', 'lang-kkprogressbar') . '</a></div>
-                        <hr />
-                        <div style="margin: 10px 0px; font-size: 10px;">
-                            <h4>' . __('Legenda', 'lang-kkprogressbar') . ':</h4>
-                            <img src="' . WP_PLUGIN_URL . '/kkprogressbar/images/aktywny.png" alt="Yes" style="vertical-align:middle;" /> - ' . __('Aktywny', 'lang-kkprogressbar') . '<br />
-                            <img src="' . WP_PLUGIN_URL . '/kkprogressbar/images/wstrzymany.png" alt="Yes" style="vertical-align:middle;" /> - ' . __('Prace wstrzymane', 'lang-kkprogressbar') . '<br />
-                            <img src="' . WP_PLUGIN_URL . '/kkprogressbar/images/nieaktywny.png" alt="Yes" style="vertical-align:middle;" /> - ' . __('Nieaktywny (nie jest wyświetlany)', 'lang-kkprogressbar') . '<br />
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="postbox gdrgrid frontright">
-                <h3 class="hndle" style="cursor:default;"><span>' . __('Dotacja:', 'lang-kkprogressbar') . '</span></h3>
-                <div class="inside">
-                    <div style="margin: 10px 15px;">
-                            
-                            <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
-                            <input type="hidden" name="cmd" value="_s-xclick">
-                            <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
-                            ">
-                            <input type="image" src="http://krzysztof-furtak.pl/upload/buy_coffee.png" border="0" name="submit" alt="PayPal — Płać wygodnie i bezpiecznie">
-                            <img alt="" border="0" src="https://www.paypal.com/pl_PL/i/scr/pixel.gif" width="1" height="1">
-                            </form>
-
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-         </div>
-            ';
-        echo '</div>';
+        require 'kkbp_sidebar.php';
+        
+        echo '</div></div></div>';
     }
 
     function kkpb_settings() {
 
-        global $wpdb;
-        $table_name = $wpdb->prefix . "kkpbsettings";
-
-        $rows = $wpdb->get_results("SELECT * FROM $table_name");
-
-
         echo '<div class="wrap">';
-        echo '<div id="icon-options-general" class="icon32"></div><h2>KK Progress Bar - ' . __("Ustawienia:", "lang-kkprogressbar") . '</h2>';
+        echo '<div id="icon-options-general" class="icon32"></div><h2>KK Progress Bar - ' . __("Settings", "lang-kkprogressbar") . ':</h2>';
         echo '<hr style="margin-top: 30px; margin-bottom: 20px;" />';
 
-        if ($rows[2]->value == 1) {
+        if (get_option('kkpb-textura') == 1) {
             $checked = 'checked="checked"';
         } else {
             $checked = '';
         }
+        
+    	if(get_option('kkpb-cloud') == 0){
+			$bar_tak = '';
+			$bar_nie = 'selected="selected"';
+			$set_disp = 'display: none;';
+		}else{
+			$bar_nie = '';
+			$bar_tak = 'selected="selected"';
+			$set_disp = '';
+		}
+		
+		if(get_option('kkpb-cloud-skin') == 'dark'){
+			$cloud_dark = 'selected="selected"';
+			$cloud_white = '';
+		}elseif (get_option('kkpb-cloud-skin') == 'white'){
+			$cloud_white = 'selected="selected"';
+			$cloud_dark = '';
+		}
 
         echo '
+        <div style="float:left; width: 74%;">
         <div id="info"></div>
-        <fieldset style="padding: 20px; border: 1px #ccc dashed;"><legend>' . __('Wygląd paska postępu:', 'lang-kkprogressbar') . '</legend>
+        <span id="save-loading" style="display: none;"><img src="' . WP_PLUGIN_URL . '/kkprogressbar/images/loader.gif" style="vertical-align: middle; margin-left: 10px;" alt="Czekaj..." /></span>
+        <fieldset style="padding: 20px 20px 0px 20px; margin-bottom: 20px; border: 1px #ccc dashed;"><legend style="padding: 0px 10px; font-weight: bold;">' . __('Progress bar settings', 'lang-kkprogressbar') . ':</legend>
 
             <form action="">
-                <span class="kkpb-label" style="width: 250px;">' . __('Kolor aktywnego paseka postępu:', 'lang-kkprogressbar') . ' </span><span class="kkpb-input">#<input type="text" id="kkpb-kolor-aktywny" value="' . $rows[0]->value . '" /></span><br />
-                <span class="kkpb-label" style="width: 250px;">' . __('Kolor nieaktywnego paseka postępu:', 'lang-kkprogressbar') . ' </span><span class="kkpb-input">#<input type="text" id="kkpb-kolor-nieaktywny" value="' . $rows[1]->value . '" /></span><br />
-                <span class="kkpb-label" style="width: 250px;">' . __('Textura na paseku postępu:', 'lang-kkprogressbar') . ' </span><span class="kkpb-input"><input type="checkbox" ' . $checked . ' id="kkpb-cien" /></span><br />
+                <span class="kkpb-label" style="width: 250px;">' . __('Colour of active progress bar', 'lang-kkprogressbar') . ': </span><span class="kkpb-input">#<input type="text" id="kkpb-kolor-aktywny" value="' . get_option('kkpb-kol-aktywny') . '" /></span><br />
+                <span class="kkpb-label" style="width: 250px;">' . __('Colour of inactive progress bar', 'lang-kkprogressbar') . ': </span><span class="kkpb-input">#<input type="text" id="kkpb-kolor-nieaktywny" value="' . get_option('kkpb-kol-nieaktywny') . '" /></span><br />
+                <span class="kkpb-label" style="width: 250px;">' . __('Texture on progress bar', 'lang-kkprogressbar') . ': </span><span class="kkpb-input"><input type="checkbox" ' . $checked . ' id="kkpb-cien" /></span><br />
                 <div style="margin: 20px 0px;">
-                    <a href="#" class="button" onclick="kkpbSaveSettingsBar(); return false;" /><img src="' . WP_PLUGIN_URL . '/kkprogressbar/images/save.png" alt="+" style="display:inline-block; vertical-align:middle;" /> ' . __('Zapisz', 'lang-kkprogressbar') . '</a><span id="save-loading" style="display: none;"><img src="' . WP_PLUGIN_URL . '/kkcountdown/images/loader.gif" style="vertical-align: middle; margin-left: 10px;" alt="Czekaj..." /></span>
+                    <a href="#" class="button" onclick="kkpbSaveSettingsBar(); return false;" /><img src="' . WP_PLUGIN_URL . '/kkprogressbar/images/save.png" alt="+" style="display:inline-block; vertical-align:middle;" /> ' . __('Save', 'lang-kkprogressbar') . '</a>
+                </div>
+            </form>
+
+        </fieldset>
+        
+        <fieldset style="padding: 20px 20px 0px 20px; margin-bottom: 20px; border: 1px #ccc dashed;"><legend style="padding: 0px 10px; font-weight: bold;">' . __('Cloud settings', 'lang-kkprogressbar') . ':</legend>
+
+            <form action="">
+                <span class="kkpb-label" style="width: 250px;">' . __('Show cloud', 'lang-kkprogressbar') . ': </span><span class="kkpb-input"><select id="kkpb-cloud" onchange="setCloudKKPB(); return false;"><option value="0" '.$bar_nie.'>'. __('No','lang-kkprogressbar') .'</option><option value="1" '.$bar_tak.'>'. __('Yes','lang-kkprogressbar') .'</option></select><br />
+                <span class="kkpb-label" style="width: 250px;">' . __('Cloud skin', 'lang-kkprogressbar') . ': </span><span class="kkpb-input"><select id="kkpb-cloud-skin" ><option value="dark" '.$cloud_dark.'>'. __('Dark','lang-kkprogressbar') .'</option><option value="white" '.$cloud_white.'>'. __('White','lang-kkprogressbar') .'</option></select><br />
+                <span class="kkpb-label" style="width: 250px;">' . __('Cloud text color', 'lang-kkprogressbar') . ': </span><span class="kkpb-input">#<input type="text" id="kkpb-kolor-cloud" value="' . get_option('kkpb-kol-cloud') . '" /></span><br />
+                <span class="kkpb-label" style="width: 250px;">' . __('Cloud width (min 150px)', 'lang-kkprogressbar') . ': </span><span class="kkpb-input"><input type="text" id="kkpb-cloud-width" value="' . get_option('kkpb-cloud-width') . '" /> px</span><br />
+                <div style="margin: 20px 0px;">
+                    <a href="#" class="button" onclick="kkpbSaveSettingsBar(); return false;" /><img src="' . WP_PLUGIN_URL . '/kkprogressbar/images/save.png" alt="+" style="display:inline-block; vertical-align:middle;" /> ' . __('Save', 'lang-kkprogressbar') . '</a>
                 </div>
             </form>
 
         </fieldset>
         ';
+		echo '
+		</div>
+        <div class="metabox-holder" style="float:right; width: 25%; margin-right:5px; padding-top:0px;">
+        ';
 
-        echo '</div>';
+        require 'kkbp_sidebar.php';
+        
+        echo '</div></div>';
+        ?>
+        <!-- 
+        <table style="border-spacing: 0px; border-collapse: collapse; color: #ccc;">
+        	<tr>
+        		<td style="width: 26px; height: 26px; background: url(<?php echo WP_PLUGIN_URL; ?>/kkprogressbar/skins/dark/top-left.png) no-repeat;"></td>
+        		<td style="width: auto; height: 26px; background: url(<?php echo WP_PLUGIN_URL; ?>/kkprogressbar/skins/dark/top.png) repeat-x;"></td>
+        		<td style="width: 26px; height: 26px; background: url(<?php echo WP_PLUGIN_URL; ?>/kkprogressbar/skins/dark/top-right.png) no-repeat;"></td>
+        	</tr>
+        	<tr>
+        		<td style="width: 26px; background: url(<?php echo WP_PLUGIN_URL; ?>/kkprogressbar/skins/dark/left.png) repeat-y;"></td>
+        		<td style="width: 250px; font-size: 11px; background: url(<?php echo WP_PLUGIN_URL; ?>/kkprogressbar/skins/dark/background.png);">dfgdfgf</td>
+        		<td style="width: 26px; background: url(<?php echo WP_PLUGIN_URL; ?>/kkprogressbar/skins/dark/right.png) repeat-y;"></td>
+        	</tr>
+        	<tr>
+        		<td rowspan="2" style="width: 26px; height: 37px; background: url(<?php echo WP_PLUGIN_URL; ?>/kkprogressbar/skins/dark/bottom-left.png) no-repeat;"></td>
+        		<td style="width: auto; height: 16px; background: url(<?php echo WP_PLUGIN_URL; ?>/kkprogressbar/skins/dark/bottom.png) repeat-x;"></td>
+        		<td rowspan="2" style="width: 26px; height: 37px; background: url(<?php echo WP_PLUGIN_URL; ?>/kkprogressbar/skins/dark/bottom-right.png) no-repeat;"></td>
+        	</tr>
+        	<tr>
+        		<td style="text-align: center; width: auto; height: 21px; background: url(<?php echo WP_PLUGIN_URL; ?>/kkprogressbar/skins/dark/bottom-shadow.png) repeat-x;"><img src="<?php echo WP_PLUGIN_URL; ?>/kkprogressbar/skins/dark/dziubek.png" alt="" /></td>
+        	</tr>
+        </table>
+         -->
+        <?php
     }
 
 }
 /* koniec admin */
 
-require_once('ajax.php');
+require_once ('ajax.php');
 
 ?>
