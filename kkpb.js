@@ -446,12 +446,26 @@
 })(jQuery);
 ;
 
+function alignCenter(progbar){
+	
+		var width_parent = parseInt(progbar.parent('div').css('width'));
+		var width_child = parseInt(progbar.find('table').css('width'));
+		var roznica = Math.round((width_parent - width_child)/2);
+		
+		progbar.find('.div-cloud').css({'left': roznica+'px'});
+	
+}
+
 function kkpbSaveSettingsBar(){
 
     var kol_aktywny = jQuery('#kkpb-kolor-aktywny').val();
     var kol_nieaktywny = jQuery('#kkpb-kolor-nieaktywny').val();
-    var textura = jQuery('#kkpb-cien').val();
-    if(textura == 'on'){
+    var cloud = jQuery('#kkpb-cloud').val();
+    var kol_cloud = jQuery('#kkpb-kolor-cloud').val();
+    var cloud_width = jQuery('#kkpb-cloud-width').val();
+    var cloud_skin = jQuery('#kkpb-cloud-skin').val();
+    
+    if(jQuery('#kkpb-cien').attr('checked') == true){
         textura = '1';
     }else{
         textura = '0';
@@ -459,16 +473,26 @@ function kkpbSaveSettingsBar(){
     
     var wiadomosc = {
         action : 'bar_settings_kkpb',
-        kol_aktywny : kol_aktywny,
-        kol_nieaktywny : kol_nieaktywny,
-        textura : textura
+        kol_aktywny 	: 	kol_aktywny,
+        kol_nieaktywny 	: 	kol_nieaktywny,
+        textura 		: 	textura,
+        cloud			:	cloud,
+        kol_cloud		:	kol_cloud,
+        cloud_width		:	cloud_width,
+        cloud_skin		:	cloud_skin
     };
 
     jQuery('#save-loading').show();
     jQuery.post(ajaxurl,wiadomosc,function(html){
 
         jQuery('#save-loading').hide();
-        jQuery('#info').html(html);
+        
+        var dane = html.split('|||');
+
+        if(dane[0] == 0){
+        	jQuery('#info').html(dane[1]);
+        }
+        
         setTimeout("jQuery('#info').html(' ');",3000);
     });
 
@@ -517,6 +541,8 @@ function kkpbSaveProgress(){
 
     var opis = jQuery('#kkpb-opis').val();
     var procent = jQuery('#kkpb-procent').val();
+    
+    opis = opis.replace(/(<([^>]+)>)/ig, '');
 
     if(error == 0){
         var wiadomosc = {
@@ -564,6 +590,8 @@ function kkpbSaveEditProgress(){
     var opis = jQuery('#kkpb-opis-edit').val();
     var procent = jQuery('#kkpb-procent-edit').val();
 
+    opis = opis.replace(/(<([^>]+)>)/ig, '');
+    
     if(error == 0){
         var wiadomosc = {
             action : 'save_bar_kkpb',
@@ -708,7 +736,7 @@ function zmienStatusKKPB(id){
                 'src':'../wp-content/plugins/kkprogressbar/images/wstrzymany.png'
             });
         }else{
-            jQuery('#info').html('<div style="background: #ffd9d9; margin:20px; padding: 10px; border-top: 1px #bb0000 solid; border-bottom: 1px #bb0000 solid;">BŁĄD: Status nie został zmieniony.</div>');
+            jQuery('#info').html('<div style="background: #ffd9d9; margin:20px; padding: 10px; border-top: 1px #bb0000 solid; border-bottom: 1px #bb0000 solid;">BĹ�Ä„D: Status nie zostaĹ‚ zmieniony.</div>');
 
         }
     });
@@ -716,6 +744,14 @@ function zmienStatusKKPB(id){
 }
 
 jQuery(document).ready(function(){
+	
+	jQuery('#kkpb-kolor-aktywny, #kkpb-kolor-nieaktywny, #kkpb-kolor-cloud').keyup(function(){
+		maxLength(jQuery(this), 6);
+	});
+	
+	jQuery('#kkpb-cloud-width').change(function(){
+		minValue(jQuery(this), 150);
+	});
     
     jQuery('#kkpb-procent').change(function(){
         var procent = jQuery('#kkpb-procent').val();
@@ -799,5 +835,57 @@ jQuery(document).ready(function(){
         }
 
     });
+    
+    // -- FRONTEND
+    
+    jQuery('.kkpb-row').mouseenter(function(){
+    	
+    	alignCenter(jQuery(this));
+    	
+    	jQuery(this).children('.div-cloud').show();
+    	jQuery(this).children('.div-cloud').animate({
+    		bottom	:	20,
+    		opacity	:	1
+    	}, 100);
+    });
+    
+    jQuery('.kkpb-row-tab').mouseenter(function(){
+    	
+    	alignCenter(jQuery(this));
+    	
+    	jQuery(this).children('.div-cloud').show();
+    	jQuery(this).children('.div-cloud').animate({
+    		bottom	:	35,
+    		opacity	:	1
+    	}, 100);
+    });
+    
+    jQuery('.kkpb-row, .kkpb-row-tab').mouseleave(function(){
+    	jQuery(this).children('.div-cloud').animate({
+    		bottom	:	0,
+    		opacity	:	0.1
+    	}, 100, function(){
+    		jQuery(this).hide();
+    	});
+    });
 
 });
+
+// ---- Walidacja ----
+
+function maxLength(obiekt, limit){
+	var text = obiekt.val();
+	if(text.length > limit){
+		var new_text = text.substring(0, limit);
+		obiekt.val(new_text);
+	}
+}
+
+function minValue(obiekt, limit){
+	var text = obiekt.val();
+	if(text < limit){
+		
+		obiekt.val('150');
+	
+	}
+}
