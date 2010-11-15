@@ -3,7 +3,7 @@
   Plugin Name: KK ProgressBar
   Plugin URI: http://krzysztof-furtak.pl/2010/06/wp-kk-progressbar-plugin/
   Description: Plugin shows/indicates progress that has been made on projects or articles.
-  Version: 1.1.2
+  Version: 1.1.3
   Author: Krzysztof Furtak
   Author URI: http://krzysztof-furtak.pl
  */
@@ -141,7 +141,9 @@ if (is_admin ()) {
 
             <div class="postbox" style="-moz-border-radius:4px; background: #fdffe1; border: 1px #ffe0a6 solid; font-size: 11px;">
                 <div style="margin:10px;">
-                    KK Progress Bar - ' . __('Aktualna wersja:', 'lang-kkprogressbar') . ' <strong>1.1.2</strong>
+                    KK Progress Bar - ' . __('Aktualna wersja:', 'lang-kkprogressbar') . ' <strong>1.1.3</strong><br /><br />
+					All plugin versions , starting from 1.2 are available in premium version and can be purchased <a href="http://codecanyon.net/item/kk-progressbar/132862" target="_blank">HERE</a> (Bare in mind that if you buy one version of the plugin, all the updates are for free). Demo version and all information about updates can be found <a href="http://krzysztof-furtak.pl/2010/06/wp-kk-progressbar-plugin/" target="_blank">HERE</a>.<br />
+Free version, which you currently use, will be not developed.
                 </div>
             </div>
 
