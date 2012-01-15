@@ -784,4 +784,14 @@ label.error{
 	font-size: 20px !important;
 }
 
+#kkadmin-ingo-pro-version{
+	color: #0033CC;
+    font-size: 14px;
+    position: relative;
+    text-align: right;
+    text-shadow: 1px 1px #FFFFFF;
+    top: 10px;
+    font-style: italic;
+}
+
 /* ============== /KKAdmin ============== */
