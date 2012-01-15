@@ -15,6 +15,10 @@ var kkpbAddForm = {
         	this.isEdit = true;
         }
         
+        if(jQuery('#kkpb-box .kkpb-progressbar-box:visible') != undefined && jQuery('#kkpb-box .kkpb-progressbar-box:visible').length > 0){
+			_this.count = jQuery('#kkpb-box .kkpb-progressbar-box:visible').length;
+		}
+        
 		this.validationInit();
 		this.disabledInputs('#kkpb_name, #kkpb_val_all, #kkpb_val_now, #kkpb_name_dialog, #kkpb_val_all_dialog, #kkpb_val_now_dialog');
 		
@@ -405,7 +409,7 @@ var kkpbAddForm = {
 	            action 	: 	'del_bar_kkpb',
 	            id		:	id
 	        };
-
+		
 		_this.ajaxLoading();
         jQuery.post(ajaxurl,wiadomosc,function(html){
         	_this.ajaxLoading();
@@ -445,8 +449,10 @@ var kkpbAddForm = {
 		}
 		
 		if(_this.count >= 2 || _this.count < 0){
-			alert('W wersji darmowej możesz dodać 2 zadania do projektu. Zapraszam do zakupu wersji pro.');
+			alert('In the free version you can add two tasks for each project. Feel free to purchase the professional version.');
 			return false;
+		}else{
+			_this.count++;
 		}
 		
 		if(id != ''){
@@ -497,7 +503,6 @@ var kkpbAddForm = {
 				box.find('input[name="'+ _this.options['inputVallNow'] +'"]').val(_this.progressFormVal.manualNow);
 				
 				_this.progressbarCount++;
-				_this.count++;
 				_this.options['progressbarBoxBox'].append(box.fadeIn());
 	        });
 		}else{
@@ -522,7 +527,6 @@ var kkpbAddForm = {
 			box.find('input[name="'+ _this.options['inputVallNow'] +'"]').val(_this.progressFormVal.manualNow);
 			
 			_this.progressbarCount++;
-			_this.count++;
 			_this.options['progressbarBoxBox'].append(box.fadeIn());
 		}
 	},
