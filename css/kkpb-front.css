@@ -1,0 +1,116 @@
+.kkpb-progressbar-content{
+	margin: 5px 0px; 
+	border: 2px solid #444444;
+	-webkit-border-radius: 4px; 
+	-khtml-border-radius: 4px; 
+	-moz-border-radius: 4px; 
+	border-radius: 4px; 
+	width: 100%;
+	box-shadow: 0px 0px 5px #999;
+}
+
+.kkpb-proj-info, .kkpb-proj-title-text{
+	vertical-align: middle;
+}
+
+.kkpb-proj-info{cursor: help;}
+
+.kkpb-proj-box .kkpb-progressbar-content{
+	margin: 1px 0px; 
+}
+
+.kkpb-proj-box{
+	margin: 0 0 15px 0;
+}
+
+.kkpb-proj-title-text{
+	font-weight: bold;
+}
+
+.kkpb-proj-perc{
+	font-weight: normal;
+	font-style: italic;
+	font-size: 10px;
+}
+
+.kkpb-proj-desc{
+	display: none;
+	font-size: 11px;
+}
+
+.kkpb-prog-bar-box{
+	padding-left: 10%;
+	margin: 5px 0;
+	background: url("../images/proj-progressbar.png") no-repeat center left;
+	position: relative;
+	left: -3px;
+}
+
+.kkpb-prog-bar-box .kkpb-progress-bar{
+	height: 12px !important;
+}
+
+.kkpb-prog-bar-box-title{
+	font-size: 10px;
+}
+
+.kkpb-proj-prog-bar{display: none;}
+
+.kkpb-rozwijarka{
+	display: block;
+	width: 16px;
+	height: 16px;
+	float: right;
+}
+
+.kkpb-plus{
+	background: url("../images/plus.png") no-repeat center center;
+}
+
+.kkpb-minus{
+	background: url("../images/minus.png") no-repeat center center;
+}
+
+/* ============== GRADIENTY ============= */
+
+.kkpb-grad-blue{
+	background: rgb(59,103,158);
+	background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzNiNjc5ZSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjUwJSIgc3RvcC1jb2xvcj0iIzJiODhkOSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjUxJSIgc3RvcC1jb2xvcj0iIzIwN2NjYSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiM3ZGI5ZTgiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+	background: -moz-linear-gradient(top, rgba(59,103,158,1) 0%, rgba(43,136,217,1) 50%, rgba(32,124,202,1) 51%, rgba(125,185,232,1) 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(59,103,158,1)), color-stop(50%,rgba(43,136,217,1)), color-stop(51%,rgba(32,124,202,1)), color-stop(100%,rgba(125,185,232,1)));
+	background: -webkit-linear-gradient(top, rgba(59,103,158,1) 0%,rgba(43,136,217,1) 50%,rgba(32,124,202,1) 51%,rgba(125,185,232,1) 100%);
+	background: -o-linear-gradient(top, rgba(59,103,158,1) 0%,rgba(43,136,217,1) 50%,rgba(32,124,202,1) 51%,rgba(125,185,232,1) 100%);
+	background: -ms-linear-gradient(top, rgba(59,103,158,1) 0%,rgba(43,136,217,1) 50%,rgba(32,124,202,1) 51%,rgba(125,185,232,1) 100%);
+	background: linear-gradient(top, rgba(59,103,158,1) 0%,rgba(43,136,217,1) 50%,rgba(32,124,202,1) 51%,rgba(125,185,232,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3b679e', endColorstr='#7db9e8',GradientType=0 );
+}
+
+/* ============== /GRADIENTY =========== */
+
+
+/* ============== PROGRESSBAR BG ============== */
+
+.kkpb-progressbar-content-dark{
+	background: #383838; /* Old browsers */
+	background: -moz-linear-gradient(top, #383838 0%, #606060 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#383838), color-stop(100%,#606060)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, #383838 0%,#606060 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, #383838 0%,#606060 100%); /* Opera11.10+ */
+	background: -ms-linear-gradient(top, #383838 0%,#606060 100%); /* IE10+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#383838', endColorstr='#606060',GradientType=0 ); /* IE6-9 */
+	background: linear-gradient(top, #383838 0%,#606060 100%); /* W3C */
+}
+
+.kkpb-progressbar-content-light{
+	background: rgb(255,255,255);
+	background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNlNWU1ZTUiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+	background: -moz-linear-gradient(top,  rgba(255,255,255,1) 0%, rgba(229,229,229,1) 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(100%,rgba(229,229,229,1)));
+	background: -webkit-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(229,229,229,1) 100%);
+	background: -o-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(229,229,229,1) 100%);
+	background: -ms-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(229,229,229,1) 100%);
+	background: linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(229,229,229,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e5e5e5',GradientType=0 );
+}
+
+/* ============== /PROGRESSBAR BG ============= */
