@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: KKProgressbar\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-12-29 20:48+0100\n"
-"PO-Revision-Date: 2011-12-29 20:52+0100\n"
+"POT-Creation-Date: 2012-01-16 19:21+0100\n"
+"PO-Revision-Date: 2012-01-16 19:23+0100\n"
 "Last-Translator: Krzysztof Furtak <krzysztof.furtak@gmail.com>\n"
 "Language-Team: KKDesign <krzysztof.furtak@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,7 @@ msgstr ""
 
 #: ../add_progressbar.php:47
 #: ../admin-interface.php:43
-#: ../admin-interface.php:116
+#: ../admin-interface.php:120
 #: ../changelog.php:21
 #: ../documentation.php:21
 #: ../settings.php:31
@@ -73,53 +73,53 @@ msgstr "Link do strony projektu:"
 msgid "Project description:"
 msgstr "Opis projektu:"
 
-#: ../add_progressbar.php:137
+#: ../add_progressbar.php:142
 msgid "Tasks:"
 msgstr "Zadania:"
 
-#: ../add_progressbar.php:137
+#: ../add_progressbar.php:142
 msgid "Add new task"
 msgstr "Dodaj nowe zadanie"
 
-#: ../add_progressbar.php:141
-#: ../add_progressbar.php:264
-#: ../admin-interface.php:120
+#: ../add_progressbar.php:146
+#: ../add_progressbar.php:269
+#: ../admin-interface.php:124
 msgid "Name"
 msgstr "Nazwa"
 
-#: ../add_progressbar.php:144
-#: ../add_progressbar.php:267
+#: ../add_progressbar.php:149
+#: ../add_progressbar.php:272
 msgid "Manual percentage"
 msgstr "Poziom zaawansowania"
 
-#: ../add_progressbar.php:147
-#: ../add_progressbar.php:270
+#: ../add_progressbar.php:152
+#: ../add_progressbar.php:275
 msgid "Progress"
 msgstr "Postęp"
 
-#: ../add_progressbar.php:153
-#: ../add_progressbar.php:276
+#: ../add_progressbar.php:158
+#: ../add_progressbar.php:281
 msgid "The target value"
 msgstr "Wartość końcowa"
 
-#: ../add_progressbar.php:156
-#: ../add_progressbar.php:279
+#: ../add_progressbar.php:161
+#: ../add_progressbar.php:284
 msgid "The current value"
 msgstr "Wartość aktualna"
 
-#: ../add_progressbar.php:161
+#: ../add_progressbar.php:166
 msgid "Save task"
 msgstr "Zapisz zadanie"
 
-#: ../add_progressbar.php:162
+#: ../add_progressbar.php:167
 msgid "Cancel"
 msgstr "Anuluj"
 
-#: ../add_progressbar.php:253
+#: ../add_progressbar.php:258
 msgid "Save project"
 msgstr "Zapisz projekt"
 
-#: ../add_progressbar.php:288
+#: ../add_progressbar.php:293
 msgid "In progress"
 msgstr "Zapisuję"
 
@@ -137,6 +137,7 @@ msgstr "<strong>Plugin nie został skonfigurowany. Może nie działać prawidło
 
 #: ../admin-interface.php:91
 #: ../admin-interface.php:95
+#: ../admin-interface.php:99
 msgid "Task"
 msgstr "Zadanie"
 
@@ -145,230 +146,132 @@ msgid "saved correctly"
 msgstr "zapisano poprawnie"
 
 #: ../admin-interface.php:95
+msgid "not saved. In the free version you can add two tasks for each project. Feel free to purchase the professional version."
+msgstr "nie został zapisany. W darmowej wersji możesz dodać dwa zadania do każdego projektu. Zapraszam do zakupu wersji profesjonalnej pluginu."
+
+#: ../admin-interface.php:99
 msgid "not saved. Please contact the plugin author"
 msgstr "nie zapisano. Proszę skontaktować się z autorem pluginu."
 
-#: ../admin-interface.php:102
+#: ../admin-interface.php:106
 msgid "The project has not been saved. Please contact the author of the plugin."
 msgstr "Projekt nie został zapisany. Proszę spróbować ponownie lub skontaktować się z autorem pluginu."
 
-#: ../admin-interface.php:109
+#: ../admin-interface.php:113
 msgid "The project has been deleted."
 msgstr "Projekt został usunięty."
 
-#: ../admin-interface.php:111
+#: ../admin-interface.php:115
 msgid "The project has not been removed. Please contact the author of the plugin."
 msgstr "Projekt nie mógł zostać usunięty.  Proszę spróbować ponownie lub skontaktować się z autorem pluginu."
 
-#: ../admin-interface.php:121
+#: ../admin-interface.php:125
 msgid "Description"
 msgstr "Opis"
 
-#: ../admin-interface.php:125
+#: ../admin-interface.php:129
 msgid "Options"
 msgstr "Opcje"
 
-#: ../admin-interface.php:140
+#: ../admin-interface.php:144
 msgid "Edit"
 msgstr "Edytuj"
 
-#: ../admin-interface.php:141
+#: ../admin-interface.php:145
 msgid "Delete"
 msgstr "Usuń"
 
-#: ../admin-interface.php:141
+#: ../admin-interface.php:145
 msgid "Please confirm the removal of the project along with all progressbarami assigned to him."
 msgstr "Potwierdź usunięcie projektu. Razem z projektem zostaną usunięte wszystkie zadania do niego przypisane."
 
-#: ../admin-interface.php:148
+#: ../admin-interface.php:152
 msgid "Legend"
 msgstr "Legenda"
 
-#: ../admin-interface.php:149
+#: ../admin-interface.php:153
 msgid "Active"
 msgstr "Aktywny"
 
-#: ../admin-interface.php:150
+#: ../admin-interface.php:154
 msgid "Works suspended"
 msgstr "Prace wstrzymane"
 
-#: ../admin-interface.php:151
+#: ../admin-interface.php:155
 msgid "Inactive (not displayed)"
 msgstr "Nieaktywny (nie jest wyświetlany)"
 
-#: ../admin-interface.php:178
-#: ../admin-interface.php:179
 #: ../admin-interface.php:180
 msgid "Blue"
 msgstr "Niebieski"
 
-#: ../admin-interface.php:181
-msgid "Red"
-msgstr "Czerwony"
-
-#: ../admin-interface.php:182
-msgid "Yellow"
-msgstr "Żółty"
-
-#: ../admin-interface.php:183
 #: ../admin-interface.php:184
-#: ../admin-interface.php:185
-#: ../admin-interface.php:186
-msgid "Green"
-msgstr "Zielony"
-
-#: ../admin-interface.php:187
-msgid "Gray"
-msgstr "Szary"
-
-#: ../admin-interface.php:188
-msgid "Brown"
-msgstr "Brązowy"
-
-#: ../admin-interface.php:189
-#: ../admin-interface.php:190
-msgid "Orange"
-msgstr "Pomarańczowy"
-
-#: ../admin-interface.php:191
-msgid "Pink"
-msgstr "Różowy"
-
-#: ../admin-interface.php:192
-#: ../admin-interface.php:193
-#: ../admin-interface.php:194
-#: ../admin-interface.php:195
-msgid "Violet"
-msgstr "Fioletowy"
-
-#: ../admin-interface.php:196
-#: ../admin-interface.php:197
-msgid "Black"
-msgstr "Czarny"
-
-#: ../admin-interface.php:201
-msgid "Glass"
-msgstr "Szkło"
-
-#: ../admin-interface.php:202
-msgid "Bars"
-msgstr "Paski"
-
-#: ../admin-interface.php:206
-msgid "Color"
-msgstr "Kolor"
-
-#: ../admin-interface.php:207
 msgid "Gragient"
 msgstr "Gradient"
 
-#: ../admin-interface.php:211
+#: ../admin-interface.php:188
 msgid "Dark"
 msgstr "Ciemy"
 
-#: ../admin-interface.php:212
+#: ../admin-interface.php:189
 msgid "Light"
 msgstr "Jasny"
 
-#: ../admin-interface.php:217
+#: ../admin-interface.php:194
 msgid "General Settings"
 msgstr "Ustawienia ogólne"
 
-#: ../admin-interface.php:222
+#: ../admin-interface.php:199
 msgid "Progress bar settings:"
 msgstr "Ustawienia paska postępu:"
 
-#: ../admin-interface.php:227
+#: ../admin-interface.php:204
 msgid "Use a solid color or gradient?"
 msgstr "Użyć jednolitego koloru czy gradientu?"
 
-#: ../admin-interface.php:234
+#: ../admin-interface.php:211
 msgid "Progressbar gradient"
 msgstr "Gradient paska postępu"
 
-#: ../admin-interface.php:241
-msgid "Progressbar color"
-msgstr "Kolor paska postępu"
-
-#: ../admin-interface.php:242
-msgid "..."
-msgstr "..."
-
-#: ../admin-interface.php:247
-msgid "Use textures?"
-msgstr "Użyć textury?"
-
-#: ../admin-interface.php:248
-msgid "Texture will be applied on progressbar."
-msgstr "Tekstura zostanie nałożona na pasek postępu."
-
-#: ../admin-interface.php:253
-msgid "Progressbar texture"
-msgstr "Textura paska postępu"
-
-#: ../admin-interface.php:259
+#: ../admin-interface.php:217
 msgid "Background progress bar settings:"
 msgstr "Ustawienia tła paska postępu:"
 
-#: ../admin-interface.php:264
+#: ../admin-interface.php:222
 msgid "Progressbar background"
 msgstr "Tło paska postępu"
 
-#: ../admin-interface.php:271
-msgid "Border size"
-msgstr "Szerokość obramowania"
-
-#: ../admin-interface.php:277
+#: ../admin-interface.php:229
 msgid "Border color"
 msgstr "Kolor obramowania"
 
-#: ../admin-interface.php:283
-msgid "Rounding of corners"
-msgstr "Rozmiar zaokrąglenia rogów"
-
-#: ../admin-interface.php:288
+#: ../admin-interface.php:234
 msgid "General settings:"
 msgstr "Ustawienia ogólne:"
 
-#: ../admin-interface.php:293
+#: ../admin-interface.php:239
 msgid "Show information about the project?"
 msgstr "Wyświetlić informację o projekcie?"
 
-#: ../admin-interface.php:294
+#: ../admin-interface.php:240
 msgid "Do you want to view information icon? After moving the cursor on the icon, the user will see a cloud with information about the project."
 msgstr "Czy ma być wyświetlona ikonka informacyjna? Po najechaniu na ikonkę kursorem, użytkownikowi wyświetli się dymek z opisem projektu."
 
-#: ../admin-interface.php:299
+#: ../admin-interface.php:245
 msgid "Show project progressbar?"
 msgstr "Wyświetlić ogólny pasek postępu dla projektu?"
 
-#: ../admin-interface.php:300
+#: ../admin-interface.php:246
 msgid "Do you want to display a progress bar that summarizes the general progress of work on the project. It is calculated based on the average values ​​of all tasks belonging to the project."
 msgstr "Czy ma być wyświetlony ogólny pasek postępu projektu? Jest on obliczany na podstawie średniej wartości zaawansowania ze wszystkich zadań przypisanych do danego projektu."
 
-#: ../admin-interface.php:305
+#: ../admin-interface.php:251
 msgid "Display the percentage of completion?"
 msgstr "Wyświetlić procent zaawansowania prac nad projektem?"
 
-#: ../admin-interface.php:306
+#: ../admin-interface.php:252
 msgid "Do you want to display a numeric percentage progress on the project."
 msgstr "Czy ma być wyświetlony procent zaawansowania prac nad projektem?"
-
-#: ../admin-interface.php:311
-msgid "Widget - the height of progress bar for the project."
-msgstr "Widget - wysokość paska postępu dla projektu."
-
-#: ../admin-interface.php:317
-msgid "Widget - the height of progress bar for the task."
-msgstr "Widget - wysokość paska postępu dla zadań."
-
-#: ../admin-interface.php:323
-msgid "Shortcode - the height of progress bar for the project."
-msgstr "Shortcode - wysokość paska postępu dla projektu."
-
-#: ../admin-interface.php:329
-msgid "Shortcode - the height of progress bar for the task."
-msgstr "Shortcode - wysokość paska postępu dla zadań."
 
 #: ../kkpb_prezentacja.php:18
 #: ../kkpb_prezentacja.php:107
@@ -400,6 +303,10 @@ msgstr "Ludzie, którzy pomagają w tłumaczeniu pluginu"
 msgid "Thank you"
 msgstr "Dziękuję!"
 
+#: ../settings.php:43
+msgid "More settings can be found in the professional version of the plugin."
+msgstr "Więcej opcji zjadziesz w wersji profesjonalnej pluginu."
+
 #: ../settings.php:58
 msgid "Save changes"
 msgstr "Zapisz zmiany"
@@ -408,13 +315,82 @@ msgstr "Zapisz zmiany"
 msgid "Progressbar preview"
 msgstr "Podgląd paska postępu"
 
-#: ../settings.php:118
+#: ../settings.php:122
 msgid "-- wybierz --"
 msgstr "-- wybierz --"
 
 #: ../js/tinyMCE-shortcodes.php:15
 msgid "You are not allowed to be here"
 msgstr "Nie jesteś upoważniony, aby znajdować się na tej stronie."
+
+#~ msgid "Red"
+#~ msgstr "Czerwony"
+
+#~ msgid "Yellow"
+#~ msgstr "Żółty"
+
+#~ msgid "Green"
+#~ msgstr "Zielony"
+
+#~ msgid "Gray"
+#~ msgstr "Szary"
+
+#~ msgid "Brown"
+#~ msgstr "Brązowy"
+
+#~ msgid "Orange"
+#~ msgstr "Pomarańczowy"
+
+#~ msgid "Pink"
+#~ msgstr "Różowy"
+
+#~ msgid "Violet"
+#~ msgstr "Fioletowy"
+
+#~ msgid "Black"
+#~ msgstr "Czarny"
+
+#~ msgid "Glass"
+#~ msgstr "Szkło"
+
+#~ msgid "Bars"
+#~ msgstr "Paski"
+
+#~ msgid "Color"
+#~ msgstr "Kolor"
+
+#~ msgid "Progressbar color"
+#~ msgstr "Kolor paska postępu"
+
+#~ msgid "..."
+#~ msgstr "..."
+
+#~ msgid "Use textures?"
+#~ msgstr "Użyć textury?"
+
+#~ msgid "Texture will be applied on progressbar."
+#~ msgstr "Tekstura zostanie nałożona na pasek postępu."
+
+#~ msgid "Progressbar texture"
+#~ msgstr "Textura paska postępu"
+
+#~ msgid "Border size"
+#~ msgstr "Szerokość obramowania"
+
+#~ msgid "Rounding of corners"
+#~ msgstr "Rozmiar zaokrąglenia rogów"
+
+#~ msgid "Widget - the height of progress bar for the project."
+#~ msgstr "Widget - wysokość paska postępu dla projektu."
+
+#~ msgid "Widget - the height of progress bar for the task."
+#~ msgstr "Widget - wysokość paska postępu dla zadań."
+
+#~ msgid "Shortcode - the height of progress bar for the project."
+#~ msgstr "Shortcode - wysokość paska postępu dla projektu."
+
+#~ msgid "Shortcode - the height of progress bar for the task."
+#~ msgstr "Shortcode - wysokość paska postępu dla zadań."
 
 #~ msgid "Add task"
 #~ msgstr "Zapisz zadanie"
