@@ -3,7 +3,7 @@
   Plugin Name: KKProgressbar2 Free
   Plugin URI: http://krzysztof-furtak.pl/kk-progress-bar-2/
   Description: Plugin shows/indicates progress that has been made on projects. KKProgressbar2 is a totally new uncover of my plugin. This plugin allows you to show the progress made on your projects. The new version (2.x) segregates projects and tasks so that you can see which tasks need to be completed to finish a project. The number of projects and tasks that can be added is unlimited. Users of the old plugin (1.1.x Free and 1.3.x Premium) do not need to be worried as I took care of them as well. New plugin will detect his older friend and convert the data to the new version under the condition that user allows for it. 
-  Version: 2.0
+  Version: 1.1.4
   Author: Krzysztof Furtak
   Author URI: http://krzysztof-furtak.pl
  */
