@@ -1,4 +1,4 @@
-=== KKProgressbar2 Free - advanced progress bars ===
+﻿=== KKProgressbar2 Free - advanced progress bars ===
 Contributors: Krzy-siek
 Donate link: http://codecanyon.net/item/kk-progressbar-2/916225?ref=KrzysztofF
 Version: 1.1.4.1
@@ -29,7 +29,9 @@ Please find below all the options that you can get by purchasing professional ve
 If you are willing to support my work or you are looking for more options, feel free to purchase professional version of the plugin.
 
 DEMO: http://krzysztof-furtak.pl/kk-progress-bar-2
+
 PREMIUM VERSION: http://codecanyon.net/item/kk-progressbar-2/916225?ref=KrzysztofF
+
 Author Site: http://krzysztof-furtak.pl
 
 Thank you for choosing my product! Do not hesitate to contact me in case of any further questions or concerns.
