@@ -29,12 +29,15 @@ Please find below all the options that you can get by purchasing professional ve
 If you are willing to support my work or you are looking for more options, feel free to purchase professional version of the plugin.
 
 DEMO: http://krzysztof-furtak.pl/kk-progress-bar-2
+
 PREMIUM VERSION: http://codecanyon.net/item/kk-progressbar-2/916225?ref=KrzysztofF
+
 Author Site: http://krzysztof-furtak.pl
 
 Thank you for choosing my product! Do not hesitate to contact me in case of any further questions or concerns.
 
 == Installation ==
+
 1. Unpack files from the patch you have purchased.
 2. Copy folder 'kkprogress' to a folder on your own server. To do it you might want to use programs meant for establishing connection with FTP server (personally, I would recommend FileZilla program. You can find guide on how to use it here). All the data needed for establishing connection with FTP server should go together with a purchased server.
 3. Next, log in to the administrative panel of your blog.
@@ -43,6 +46,7 @@ Thank you for choosing my product! Do not hesitate to contact me in case of any 
 6. On the left hand side, 'KK Progressbar' tab should appear. From that tab, you can manage your plug-in.
 
 == Frequently Asked Questions ==
+
 = How to add a project? =
 1. Go to 'Add/Edit Project' tab.
 2. Fill out a form.
@@ -64,13 +68,19 @@ Thank you for choosing my product! Do not hesitate to contact me in case of any 
 3. Click on a coloured icon to save the changes.
 
 == Screenshots ==
-1.Administration
-2.Add progress bar
-3.Article / Widget
-4.Settings
-5.Add project
+
+1. Administration
+
+2. Add progress bar
+
+3. Article / Widget
+
+4. Settings
+
+5. Add project
 
 == Changelog ==
+
 = 1.1.4 =
 * NEW: Totally new uncover of my plugin.
 
@@ -118,5 +128,6 @@ Thank you for choosing my product! Do not hesitate to contact me in case of any 
 * NEW: Beta release
 
 == Upgrade Notice ==
+
 = 1.1.4 =
 Totally new uncover of my plugin.
