@@ -5,7 +5,6 @@ Version: 1.1.4.1
 Tags: progress bar, bar, progress, countdown, count, down, time
 Requires at least: 3.0
 Tested up to: 3.0
-Stable tag: 1.1.4.1
 
 Plugin shows/indicates progress that has been made on projects or articles.
 
