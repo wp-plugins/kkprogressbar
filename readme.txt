@@ -1,6 +1,7 @@
 ﻿=== KKProgressbar2 Free - advanced progress bars ===
 Contributors: Krzy-siek
 Donate link: http://codecanyon.net/item/kk-progressbar-2/916225?ref=KrzysztofF
+License: GNU GPL
 Version: 1.1.4.1
 Tags: progress bar, bar, progress, countdown, count, down, time
 Requires at least: 3.0
