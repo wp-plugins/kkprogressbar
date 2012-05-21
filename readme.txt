@@ -1,4 +1,4 @@
-﻿=== KKProgressbar2 Free - advanced progress bars ===
+=== KKProgressbar2 Free - advanced progress bars ===
 Contributors: Krzy-siek
 Donate link: http://codecanyon.net/item/kk-progressbar-2/916225?ref=KrzysztofF
 Version: 1.1.4.1
