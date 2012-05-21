@@ -48,7 +48,7 @@ Thank you for choosing my product! Do not hesitate to contact me in case of any 
 
 1. Administration
 2. Add progress bar
-3. Article / Widget
+3. Article and Widget
 4. Settings
 5. Add project
 
