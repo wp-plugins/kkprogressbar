@@ -45,6 +45,14 @@ Thank you for choosing my product! Do not hesitate to contact me in case of any 
 5. Find plug-in called 'KK Progressbar' and click on 'Activate'
 6. On the left hand side, 'KK Progressbar' tab should appear. From that tab, you can manage your plug-in.
 
+== Screenshots ==
+
+1. Administration
+2. Add progress bar
+3. Article / Widget
+4. Settings
+5. Add project
+
 == Frequently Asked Questions ==
 
 = How to add a project? =
@@ -66,14 +74,6 @@ Thank you for choosing my product! Do not hesitate to contact me in case of any 
 1. Click on a random setting field to choose a colour.
 2. You should be prompted with a window where you can a colour from.
 3. Click on a coloured icon to save the changes.
-
-== Screenshots ==
-
-1. Administration
-2. Add progress bar
-3. Article / Widget
-4. Settings
-5. Add project
 
 == Changelog ==
 
