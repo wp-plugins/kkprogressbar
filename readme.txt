@@ -2,11 +2,11 @@
 Contributors: Krzy-siek
 Donate link: http://codecanyon.net/item/kk-progressbar-2/916225?ref=KrzysztofF
 License: GNU GPL
-Version: 1.1.4.1
+Version: 1.1.4.2
 Tags: progress bar, bar, progress, countdown, count, down, time
 Requires at least: 3.0
 Tested up to: 3.0
-Stable tag: 1.1.4.1
+Stable tag: 1.1.4.2
 
 Plugin shows/indicates progress that has been made on projects or articles.
 
@@ -77,6 +77,9 @@ Thank you for choosing my product! Do not hesitate to contact me in case of any 
 3. Click on a coloured icon to save the changes.
 
 == Changelog ==
+
+= 1.1.4.2 =
+* FIX: Cannot use in sub directory wordpress install
 
 = 1.1.4 =
 * NEW: Totally new uncover of my plugin.

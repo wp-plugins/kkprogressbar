@@ -18,11 +18,11 @@ global $kkplugin, $wersja_plugin, $wpdb;
 	
 	<div id="kkadmin-menu">
 		<ul id="kkadmin-menu-ul">
-				<li><a href="/wp-admin/admin.php?page=kkpb-menu"><img src="<?php echo WP_PLUGIN_URL; ?>/kkprogressbar/images/blog.png" alt="" style="vertical-align: middle; margin-right: 15px;" /> <?php echo __('List of projects','lang-kkprogressbar'); ?></a></li>
-				<li><a href="/wp-admin/admin.php?page=kkpb-add-project"><img src="<?php echo WP_PLUGIN_URL; ?>/kkprogressbar/images/blog.png" alt="" style="vertical-align: middle; margin-right: 15px;" /> <?php echo __('Add/Edit Project','lang-kkprogressbar'); ?></a></li>
-				<li><a href="/wp-admin/admin.php?page=kkpb-settings"><img src="<?php echo WP_PLUGIN_URL; ?>/kkprogressbar/images/blog.png" alt="" style="vertical-align: middle; margin-right: 15px;" /> <?php echo __('Settings','lang-kkprogressbar'); ?></a></li>
-				<li><a href="/wp-admin/admin.php?page=kkpb-menu-documentation"><img src="<?php echo WP_PLUGIN_URL; ?>/kkprogressbar/images/blog.png" alt="" style="vertical-align: middle; margin-right: 15px;" /> <?php echo __('Documentation','lang-kkprogressbar'); ?></a></li>
-				<li><a href="/wp-admin/admin.php?page=kkpb-menu-changelog" class="active"><img src="<?php echo WP_PLUGIN_URL; ?>/kkprogressbar/images/blog_up.png" alt="" style="vertical-align: middle; margin-right: 15px;" /> Changelog</a></li>
+				<li><a href="<?php echo home_url(); ?>/wp-admin/admin.php?page=kkpb-menu"><img src="<?php echo WP_PLUGIN_URL; ?>/kkprogressbar/images/blog.png" alt="" style="vertical-align: middle; margin-right: 15px;" /> <?php echo __('List of projects','lang-kkprogressbar'); ?></a></li>
+				<li><a href="<?php echo home_url(); ?>/wp-admin/admin.php?page=kkpb-add-project"><img src="<?php echo WP_PLUGIN_URL; ?>/kkprogressbar/images/blog.png" alt="" style="vertical-align: middle; margin-right: 15px;" /> <?php echo __('Add/Edit Project','lang-kkprogressbar'); ?></a></li>
+				<li><a href="<?php echo home_url(); ?>/wp-admin/admin.php?page=kkpb-settings"><img src="<?php echo WP_PLUGIN_URL; ?>/kkprogressbar/images/blog.png" alt="" style="vertical-align: middle; margin-right: 15px;" /> <?php echo __('Settings','lang-kkprogressbar'); ?></a></li>
+				<li><a href="<?php echo home_url(); ?>/wp-admin/admin.php?page=kkpb-menu-documentation"><img src="<?php echo WP_PLUGIN_URL; ?>/kkprogressbar/images/blog.png" alt="" style="vertical-align: middle; margin-right: 15px;" /> <?php echo __('Documentation','lang-kkprogressbar'); ?></a></li>
+				<li><a href="<?php echo home_url(); ?>/wp-admin/admin.php?page=kkpb-menu-changelog" class="active"><img src="<?php echo WP_PLUGIN_URL; ?>/kkprogressbar/images/blog_up.png" alt="" style="vertical-align: middle; margin-right: 15px;" /> Changelog</a></li>
 		</ul>
 		<?php include 'kkpb_sidebar.php'; ?>
 	</div>

@@ -40,11 +40,11 @@ function kkpb_admin_content(){
     <?php else: ?>
 	<div id="kkadmin-menu">
 		<ul id="kkadmin-menu-ul">
-				<li><a href="/wp-admin/admin.php?page=kkpb-menu" class="active"><img src="<?php echo WP_PLUGIN_URL; ?>/kkprogressbar/images/blog_up.png" alt="" style="vertical-align: middle; margin-right: 15px;" /> <?php echo __('List of projects','lang-kkprogressbar'); ?></a></li>
-				<li><a href="/wp-admin/admin.php?page=kkpb-add-project"><img src="<?php echo WP_PLUGIN_URL; ?>/kkprogressbar/images/blog.png" alt="" style="vertical-align: middle; margin-right: 15px;" /> <?php echo __('Add/Edit Project','lang-kkprogressbar'); ?></a></li>
-				<li><a href="/wp-admin/admin.php?page=kkpb-settings"><img src="<?php echo WP_PLUGIN_URL; ?>/kkprogressbar/images/blog.png" alt="" style="vertical-align: middle; margin-right: 15px;" /> <?php echo __('Settings','lang-kkprogressbar'); ?></a></li>
-				<li><a href="/wp-admin/admin.php?page=kkpb-menu-documentation"><img src="<?php echo WP_PLUGIN_URL; ?>/kkprogressbar/images/blog.png" alt="" style="vertical-align: middle; margin-right: 15px;" /> <?php echo __('Documentation','lang-kkprogressbar'); ?></a></li>
-				<li><a href="/wp-admin/admin.php?page=kkpb-menu-changelog"><img src="<?php echo WP_PLUGIN_URL; ?>/kkprogressbar/images/blog.png" alt="" style="vertical-align: middle; margin-right: 15px;" /> Changelog</a></li>
+				<li><a href="<?php echo home_url(); ?>/wp-admin/admin.php?page=kkpb-menu" class="active"><img src="<?php echo WP_PLUGIN_URL; ?>/kkprogressbar/images/blog_up.png" alt="" style="vertical-align: middle; margin-right: 15px;" /> <?php echo __('List of projects','lang-kkprogressbar'); ?></a></li>
+				<li><a href="<?php echo home_url(); ?>/wp-admin/admin.php?page=kkpb-add-project"><img src="<?php echo WP_PLUGIN_URL; ?>/kkprogressbar/images/blog.png" alt="" style="vertical-align: middle; margin-right: 15px;" /> <?php echo __('Add/Edit Project','lang-kkprogressbar'); ?></a></li>
+				<li><a href="<?php echo home_url(); ?>/wp-admin/admin.php?page=kkpb-settings"><img src="<?php echo WP_PLUGIN_URL; ?>/kkprogressbar/images/blog.png" alt="" style="vertical-align: middle; margin-right: 15px;" /> <?php echo __('Settings','lang-kkprogressbar'); ?></a></li>
+				<li><a href="<?php echo home_url(); ?>/wp-admin/admin.php?page=kkpb-menu-documentation"><img src="<?php echo WP_PLUGIN_URL; ?>/kkprogressbar/images/blog.png" alt="" style="vertical-align: middle; margin-right: 15px;" /> <?php echo __('Documentation','lang-kkprogressbar'); ?></a></li>
+				<li><a href="<?php echo home_url(); ?>/wp-admin/admin.php?page=kkpb-menu-changelog"><img src="<?php echo WP_PLUGIN_URL; ?>/kkprogressbar/images/blog.png" alt="" style="vertical-align: middle; margin-right: 15px;" /> Changelog</a></li>
 		</ul>
 		<?php include 'kkpb_sidebar.php'; ?>
 	</div>
@@ -141,8 +141,8 @@ function kkpb_admin_content(){
 			                <td><?php echo count(kkpb::getProgressbarsOnStatus($row->id, '1')); ?></td>
 			                <td><?php echo count(kkpb::getProgressbarsOnStatus($row->id, '2')); ?></td>
 			                <td><?php echo count(kkpb::getProgressbarsOnStatus($row->id, '3')); ?></td>
-			       			<td><form action="/wp-admin/admin.php?page=kkpb-add-project" method="post"><input type="hidden" name="action" value="edit-project" /><input type="hidden" name="id" value="<?php echo $row->id; ?>" /><input type="submit" class="button kkpb-button" value="<?php echo __('Edit', 'lang-kkprogressbar'); ?>" /></form></td>
-			                <td><form action="/wp-admin/admin.php?page=kkpb-menu" method="post"><input type="hidden" name="action" value="delete-project" /><input type="hidden" name="id" value="<?php echo $row->id; ?>" /><input type="submit" class="button kkpb-button" value="<?php echo __('Delete', 'lang-kkprogressbar'); ?>" onclick="javascript: return confirm('<?php echo __('Please confirm the removal of the project along with all progressbarami assigned to him.', 'lang-kkprogressbar'); ?>');" /></form></td>
+			       			<td><form action="<?php echo home_url(); ?>/wp-admin/admin.php?page=kkpb-add-project" method="post"><input type="hidden" name="action" value="edit-project" /><input type="hidden" name="id" value="<?php echo $row->id; ?>" /><input type="submit" class="button kkpb-button" value="<?php echo __('Edit', 'lang-kkprogressbar'); ?>" /></form></td>
+			                <td><form action="<?php echo home_url(); ?>/wp-admin/admin.php?page=kkpb-menu" method="post"><input type="hidden" name="action" value="delete-project" /><input type="hidden" name="id" value="<?php echo $row->id; ?>" /><input type="submit" class="button kkpb-button" value="<?php echo __('Delete', 'lang-kkprogressbar'); ?>" onclick="javascript: return confirm('<?php echo __('Please confirm the removal of the project along with all progressbarami assigned to him.', 'lang-kkprogressbar'); ?>');" /></form></td>
 			            </tr>
 			        <?php } ?>
 			
