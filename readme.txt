@@ -12,7 +12,7 @@ Plugin shows/indicates progress that has been made on projects or articles.
 
 == Description ==
 
-Plugin shows/indicates progress that has been made on projects or articles.
+**Plugin shows/indicates progress that has been made on projects or articles.**
 KKProgressbar 2 is a totally new uncover of my plugin. This plugin allows you to show the progress made on your projects. The new version (2.x) segregates projects and tasks so that you can see which tasks need to be completed to finish a project. In premium version the number of projects and tasks that can be added is unlimited. Users of the old plugin (1.1.x Free and 1.3.x Premium) do not need to be worried as I took care of them as well. New plugin will detect his older friend and convert the data to the new version under the condition that user allows for it. 
 
 Options in that version are fairly limited as compared to professional version, however, plugin has the same possibilities as version 1.1.3 with some new updates.
@@ -29,13 +29,13 @@ Please find below all the options that you can get by purchasing professional ve
 
 If you are willing to support my work or you are looking for more options, feel free to purchase professional version of the plugin.
 
-DEMO: http://krzysztof-furtak.pl/kk-progress-bar-2
+DEMO: [Plugin DEMO](http://krzysztof-furtak.pl/kk-progress-bar-2)
 
-PREMIUM VERSION: http://codecanyon.net/item/kk-progressbar-2/916225?ref=KrzysztofF
+PREMIUM VERSION: [KKProgressbar2 Pro](http://codecanyon.net/item/kk-progressbar-2/916225?ref=KrzysztofF)
 
 Author Site: http://krzysztof-furtak.pl
 
-Thank you for choosing my product! Do not hesitate to contact me in case of any further questions or concerns.
+**Thank you for choosing my product! Do not hesitate to contact me in case of any further questions or concerns.**
 
 == Installation ==
 
