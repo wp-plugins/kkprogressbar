@@ -7,7 +7,7 @@ require_once 'db.php';
 
 global $kkplugin, $wersja_plugin, $temat, $opis;
 $kkplugin = 'KKProgressbar2 Free';
-$wersja_plugin = '1.1.4.1';
+$wersja_plugin = '1.1.4.2';
 
 function kkpb_admin_content(){
 	global $wpdb, $kkplugin, $wersja_plugin, $options;
